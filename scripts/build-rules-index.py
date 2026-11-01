@@ -3,7 +3,7 @@
 behind each free tool, pulled from each live site's own /api/rules (no hand-typed values)."""
 import json, urllib.request, datetime as dt, sys
 SITES = ["house-rules-check","japan-alert-decoder","japan-customs-allowance","japan-driving-check","japan-dual-pricing",
- "japan-hsp-points","japan-intl-postage","japan-luggage","japan-mynumber-card-check","japan-overseas-dependents",
+ "japan-hsp-points","japan-intl-postage","japan-leaving-tax","japan-luggage","japan-mynumber-card-check","japan-overseas-dependents",
  "japan-parttime-check","japan-pet-quarantine","japan-pr-check","japan-reentry-check","japan-tax-free-refund","japan-tb-screening",
  "japan-visa-fee","kyushu-travel-discount"]
 def get(u):

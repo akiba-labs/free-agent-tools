@@ -8,7 +8,7 @@ export function GET() {
     $schema: "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
     version: "1.0",
     protocolVersion: "2025-06-18",
-    serverInfo: { name: "free-agent-tools", title: "Free Agent Tools", version: "1.19.0" },
+    serverInfo: { name: "free-agent-tools", title: "Free Agent Tools", version: "1.20.0" },
     description: "Free, no-auth remote MCP server with deterministic tools for founders, small businesses, creators, developers, and travelers.",
     websiteUrl: SERVER_URL,
     documentationUrl: SERVER_URL,

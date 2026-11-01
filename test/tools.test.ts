@@ -165,10 +165,7 @@ test("japan_hsp_points_check on the hsp site", async () => {
   assert.equal(t.inputSchema.safeParse({ category: "specialized", education: "master", birthDate: "1990/01/01" }).success, false);
 });
 
-test("35 tools, v1.19.0, japan_pet_quarantine_check on the pet site", async () => {
-  assert.equal(TOOLS.length, 35);
-  const { readFileSync } = await import("node:fs");
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.19.0", f);
+test("japan_pet_quarantine_check on the pet site", async () => {
   const t = TOOLS.find((x) => x.name === "japan_pet_quarantine_check");
   assert.ok(t);
   assert.equal(SITES[t.site].url, "https://japan-pet-quarantine.vercel.app");
@@ -179,4 +176,20 @@ test("35 tools, v1.19.0, japan_pet_quarantine_check on the pet site", async () =
   assert.equal(t.inputSchema.safeParse({ direction: "fly", species: "dog" }).success, false);
   assert.equal(t.inputSchema.safeParse({ direction: "import", species: "hamster" }).success, false);
   assert.equal(t.inputSchema.safeParse({ direction: "import", species: "dog", arrivalDate: "15/06/2027" }).success, false);
+});
+
+test("36 tools, v1.20.0, japan_leaving_tax_check on the leaving site", async () => {
+  assert.equal(TOOLS.length, 36);
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.20.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_leaving_tax_check");
+  assert.ok(t);
+  assert.equal(SITES[t.site].url, "https://japan-leaving-tax.vercel.app");
+  assert.equal(t.path, "/api/check");
+  assert.equal(t.inputSchema.safeParse(t.example).success, true);
+  assert.equal(t.inputSchema.safeParse({ departureDate: "2027-01-15", employment: "self_employed", hasTaxAgent: true, pensionMonths: 30 }).success, true);
+  assert.equal(t.inputSchema.safeParse({ departureDate: "2027-02-01", plan: "short" }).success, true);
+  assert.equal(t.inputSchema.safeParse({}).success, false);
+  assert.equal(t.inputSchema.safeParse({ departureDate: "20/03/2027" }).success, false);
+  assert.equal(t.inputSchema.safeParse({ departureDate: "2027-03-20", payMethod: "cash" }).success, false);
 });

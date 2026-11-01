@@ -33,6 +33,7 @@ export const SITES: Record<string, SiteInfo> = {
   mynumber: { id: "mynumber", name: "Japan My Number Card Check", url: "https://japan-mynumber-card-check.vercel.app", blurb: "When does your My Number Card (マイナンバーカード) expire and what do you do before then? Foreign residents: the card ends with the period of stay and is not extended by a visa renewal (city-hall deadline, one-time 2-month extension while pending, 10th-birthday cap, 特定在留カード). Japanese / PR / SPR: 10th or 5th birthday, renewal window, e-certificate and マイナ保険証 grace." },
   hsp: { id: "hsp", name: "Japan HSP Points Calculator", url: "https://japan-hsp-points.vercel.app", blurb: "Highly Skilled Professional (高度専門職 / 高度人材ポイント) points for academic, specialized and management work: the full ISA points table with its no-double-count rules, 70 vs 80 (the 3-year vs 1-year permanent residence fast track), the ¥3M salary floor, what could add points, and J-Skip. Rules as of 2026-10-30; a revision is being discussed but nothing is published yet." },
   pet: { id: "pet", name: "Japan Pet Quarantine Check", url: "https://japan-pet-quarantine.vercel.app", blurb: "Bringing a dog, cat or rabbit into Japan, taking one out, or leaving and coming back: microchip → 2 rabies shots → antibody test → 180-day wait, the 40-day AQS notice, the vet check 10 days before boarding, designated regions (Hawaii, Guam, AU, NZ, Fiji, Iceland), the short-stay route, detention days if you arrive early, and the 14-day export application that becomes mandatory for dogs and rabbits from 2027-01-01. Rules as of 2026-10-31 (MAFF Animal Quarantine Service)." },
+  leaving: { id: "leaving", name: "Japan Leaving Tax Check", url: "https://japan-leaving-tax.vercel.app", blurb: "Leaving Japan: which fiscal years of resident tax (住民税) are still owed (January 1 assessment date: leave by December 31 to skip next year), whether a tax agent (納税管理人) is needed, the final-salary lump-sum deduction, the year-end adjustment or 準確定申告 deadline, the 転出届 window and the pension lump-sum claim deadline. Rules as of 2026-11-01 (地方税法, 所得税法, MIC, NTA)." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -690,6 +691,32 @@ export const TOOLS: ToolDef[] = [
       today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Override today's date (default: today in Japan)."),
     }),
     example: { direction: "import", species: "dog", country: "US", birthDate: "2026-03-01", microchipDate: "2026-06-10", vaccine1Date: "2026-06-10", vaccine2Date: "2026-07-20", bloodDrawDate: "2026-08-05", titer: 2.1, arrivalDate: "2027-06-15" },
+  },
+  {
+    name: "japan_leaving_tax_check",
+    title: "Leaving Japan: which resident tax (住民税) years are still owed, is a tax agent (納税管理人) needed, and what are the income-tax and move-out deadlines?",
+    description:
+      "Checks what tax and paperwork are still due when someone leaves Japan, from the Local Tax Act (地方税法 39 / 294 / 300 / 318 / 321-5), Income Tax Act (所得税法 126 / 127 / 190), 国税通則法 117, 住民基本台帳法 24, MIC resident-tax pages, NTA Tax Answers 1920 / 1923 / 1926 / 1478 and the Japan Pension Service, rules as of 2026-11-01. Resident tax (住民税) is assessed on whoever is registered in a city on January 1, on the previous year's income, for the fiscal year June–May: leave (with a 転出届) on or before December 31 → no next-year 住民税; leave January 2 or later → that fiscal year is owed in full. Leaving January–May, the bill is issued mid-June after departure → tax agent (納税管理人) needed (or settle / city certification). Payroll deduction (特別徴収): job ending January 1 – April 30 → remaining installments taken as a lump sum from the final pay (mandatory); June–December → only on request. Income tax: year-end adjustment on the last salary before departure; if a return is needed, 準確定申告 by the departure date, or by March 15 next year via a tax agent notified to the tax office; previous year's return due by departure when leaving January 1 – March 15; exit-tax flag for ¥100M+ securities. Also the 転出届 window (~14 days before), pension Lump-sum Withdrawal claim deadline (2 years) and residence card. plan: leave (a year or more) | short (trip under a year → still resident). Returns verdict (agent_needed | settle_before_departure | nothing_after_departure | still_resident), summary, residentTax {fiscalYears [{fiscalYear, incomeYear, status owed | not_owed | check_with_city, why, howToPay}], nextFiscalYearAvoided, leaveByToAvoidNextFY, jan1Tip, lumpSumFromFinalPay, agentRequired, agentForm}, incomeTax {yearEndAdjustment, returnRequired, returnDeadline, previousYearReturnDeadline, agentRequired, agentForm, exitTax}, deadlines [{date, what, ja, mandatory, passed}], actions, warnings, pension {lumpSumClaimBy}, sources, disclaimer. No yen amounts. Use for 'leaving Japan resident tax', 'do I pay juminzei after leaving Japan', '住民税 出国 1月1日', '納税管理人 必要', 'leave Japan before December 31 tax', 'final salary resident tax lump sum', '準確定申告 出国'. Educational, not tax or legal advice; not affiliated with the NTA, MIC, any city office or the Japan Pension Service.",
+    site: "leaving",
+    path: "/api/check",
+    inputSchema: z.object({
+      departureDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("The day you leave Japan, YYYY-MM-DD."),
+      plan: z.enum(["leave", "short"]).optional().describe("leave (moving abroad for a year or more, files a 転出届; default) | short (trip under a year, keeps the address)."),
+      arrivalDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("When you first registered an address in Japan (default: before January 1 of the departure year)."),
+      employment: z.enum(["employee", "self_employed", "none"]).optional().describe("employee (default) | self_employed | none."),
+      payMethod: z.enum(["salary", "self", "none"]).optional().describe("How 住民税 is paid: salary (payroll, 特別徴収) | self (bills, 普通徴収) | none. Default from employment."),
+      jobEndDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Job end date (default: departureDate); decides the final-salary lump-sum rule."),
+      incomeLastYear: z.boolean().optional().describe("Had taxable income last calendar year (default true)."),
+      needsTaxReturn: z.boolean().optional().describe("Needs an income tax return this year (side income > ¥200k, salary > ¥20M, self-employed, two employers…). Default: true only for self_employed."),
+      prevYearReturnPending: z.boolean().optional().describe("Leaving January 1 – March 15 with last year's return not yet filed."),
+      incomeAfterLeaving: z.boolean().optional().describe("Japan-source income after leaving (rent, property sale) → tax agent needed."),
+      hasTaxAgent: z.boolean().optional().describe("Will appoint a tax agent (納税管理人)."),
+      nationality: z.enum(["foreign", "japanese"]).optional().describe("foreign (default) | japanese (pension lump sum / residence card only for foreign nationals)."),
+      pensionMonths: z.number().nonnegative().optional().describe("Months of Japanese pension contributions (6–119 → lump-sum claim deadline)."),
+      securities100M: z.boolean().optional().describe("Holds ¥100M+ in securities etc. → exit-tax (国外転出時課税) flag."),
+      today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Override today's date (default: today in Japan)."),
+    }),
+    example: { departureDate: "2027-03-20", employment: "employee", payMethod: "salary" },
   },
 ];
 

@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-10-31T12:44+09:00",
+ "generatedAt": "2026-11-01T12:45+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -9036,6 +9036,50 @@
    }
   },
   {
+   "id": "japan-leaving-tax",
+   "name": "Japan Leaving Tax Check",
+   "site": "https://japan-leaving-tax.vercel.app",
+   "rulesEndpoint": "https://japan-leaving-tax.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-leaving-tax.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-01",
+   "effective": null,
+   "officialSources": [],
+   "rules": {
+    "rulesAsOf": "2026-11-01",
+    "residentTax": {
+     "assessmentDate": "January 1 (賦課期日, 地方税法 39 / 318). You owe the fiscal year's 住民税 (prefectural + municipal, plus the ¥1,000 森林環境税) to the city where you are registered on January 1, on the previous calendar year's income.",
+     "leaveByDec31": "Leave (and file the 転出届) on or before December 31 → no 住民税 for the next fiscal year on this year's income. Leave on January 2 or later → you still owe the full fiscal year, even though you are gone (MIC).",
+     "fiscalYear": "Fiscal year N runs June N – May N+1. Payroll deduction (特別徴収) takes 12 monthly amounts June–May; self-pay (普通徴収) bills arrive in June with 4 installments (June, August, October, January).",
+     "jobEndsJanToApr": "Job ends January 1 – April 30: the employer must deduct all remaining payroll installments (to May) in one lump sum from the final salary or retirement pay if it covers them (地方税法 321-5 ②; MIC says January–May).",
+     "jobEndsJunToDec": "Job ends June 1 – December 31: lump-sum deduction only if you ask; otherwise the rest switches to self-pay bills.",
+     "taxAgent": "If you cannot pay before leaving, appoint a tax agent (納税管理人) and notify the city (納税管理人申告書 / 届出書) before you go, unless the city certifies you don't need one (地方税法 300).",
+     "unpaid": "Unpaid resident tax can be a problem if you later apply for a residence-period extension or change in Japan (MIC)."
+    },
+    "incomeTax": {
+     "yearEndAdjustment": "An employee who becomes a non-resident mid-year gets the year-end adjustment (年末調整) on the last salary paid before departure, if annual salary ≤ ¥20 million (NTA 1920, 所得税法 190).",
+     "departureReturn": "If you need a tax return (side income, salary over ¥20M, self-employed, rent, etc.) and have no tax agent, file the 準確定申告 by the day you leave (所得税法 127 ①, NTA 1926). With a tax agent notified to the tax office, file the normal return February 16 – March 15 of the next year.",
+     "previousYear": "Leaving January 1 – March 15 with last year's return still due: file it by the departure date unless you appoint a tax agent (所得税法 126).",
+     "agent": "Tax agent for national taxes: 「所得税・消費税の納税管理人の届出書」 to the tax office for your address, before departure (国税通則法 117, NTA 1923). A person or a company can be the agent.",
+     "exitTax": "Holding ¥100 million or more in securities etc. when you leave can trigger the exit tax (国外転出時課税, NTA 1478) if you were resident 5+ of the last 10 years.",
+     "shortStay": "Leaving for less than a year (planned): you stay a tax resident; no departure year-end adjustment."
+    },
+    "moveOut": {
+     "tenshutsu": "File the moving-out notice (転出届, 国外転出) at the city office, in practice from about 14 days before departure (住民基本台帳法 24). Trips under a year normally don't need one.",
+     "pension": "Non-Japanese with 6+ months of National / Employees' Pension contributions and under 10 years of coverage can claim the Lump-sum Withdrawal Payment within 2 years of leaving (Japan Pension Service).",
+     "residenceCard": "Mid- to long-term residents leaving for good (not on a (deemed) re-entry permit) hand in the residence card at the departure airport."
+    },
+    "notCovered": [
+     "Yen amounts (this tool gives dates and obligations, not a tax estimate)",
+     "Tax-treaty exemptions (some students, trainees, teachers and researchers)",
+     "Consumption tax, inheritance / gift tax, local enterprise tax",
+     "Corporate officers' director fees and non-resident withholding (20.42%) after departure",
+     "Your city's own procedure details and forms"
+    ],
+    "docs": "https://japan-leaving-tax.vercel.app/openapi.json",
+    "checker": "https://japan-leaving-tax.vercel.app/api/check"
+   }
+  },
+  {
    "id": "japan-luggage",
    "name": "Japan Luggage Check",
    "site": "https://japan-luggage.vercel.app",
@@ -15140,7 +15184,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-10-31",
+    "today": "2026-11-01",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

@@ -32,7 +32,7 @@ const handler = createMcpHandler(
       );
     }
   },
-  { serverInfo: { name: "free-agent-tools", version: "1.19.0" }, instructions: INSTRUCTIONS },
+  { serverInfo: { name: "free-agent-tools", version: "1.20.0" }, instructions: INSTRUCTIONS },
 );
 
 const CORS = {
