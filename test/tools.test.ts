@@ -178,10 +178,7 @@ test("japan_pet_quarantine_check on the pet site", async () => {
   assert.equal(t.inputSchema.safeParse({ direction: "import", species: "dog", arrivalDate: "15/06/2027" }).success, false);
 });
 
-test("36 tools, v1.20.0, japan_leaving_tax_check on the leaving site", async () => {
-  assert.equal(TOOLS.length, 36);
-  const { readFileSync } = await import("node:fs");
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.20.0", f);
+test("japan_leaving_tax_check on the leaving site", async () => {
   const t = TOOLS.find((x) => x.name === "japan_leaving_tax_check");
   assert.ok(t);
   assert.equal(SITES[t.site].url, "https://japan-leaving-tax.vercel.app");
@@ -192,4 +189,21 @@ test("36 tools, v1.20.0, japan_leaving_tax_check on the leaving site", async () 
   assert.equal(t.inputSchema.safeParse({}).success, false);
   assert.equal(t.inputSchema.safeParse({ departureDate: "20/03/2027" }).success, false);
   assert.equal(t.inputSchema.safeParse({ departureDate: "2027-03-20", payMethod: "cash" }).success, false);
+});
+
+test("37 tools, v1.21.0, japan_disaster_prep_check on the disaster site", async () => {
+  assert.equal(TOOLS.length, 37);
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.21.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_disaster_prep_check");
+  assert.ok(t);
+  assert.equal(SITES[t.site].url, "https://japan-disaster-prep.vercel.app");
+  assert.equal(t.path, "/api/check");
+  assert.equal(t.inputSchema.safeParse(t.example).success, true);
+  assert.equal(t.inputSchema.safeParse({}).success, true);
+  assert.equal(t.inputSchema.safeParse({ adults: 1, builtYear: "昭和54", tenure: "rent", haveWaterLiters: 6, cats: 1 }).success, true);
+  assert.equal(t.inputSchema.safeParse({ adults: 1.5 }).success, false);
+  assert.equal(t.inputSchema.safeParse({ days: 0 }).success, false);
+  assert.equal(t.inputSchema.safeParse({ buildingType: "castle" }).success, false);
+  assert.equal(t.inputSchema.safeParse({ permitDate: "1981/06/01" }).success, false);
 });

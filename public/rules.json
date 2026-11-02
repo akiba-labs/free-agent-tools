@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-01T12:45+09:00",
+ "generatedAt": "2026-11-03T08:30+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -3016,6 +3016,55 @@
     "disclaimer": "Educational estimate only, not customs, tax or legal advice. Not affiliated with Japan Customs (税関) or the Ministry of Finance. Allowances and rates can change, and the Customs officer's assessment at the airport or port is final.",
     "docs": "https://japan-customs-allowance.vercel.app/openapi.json",
     "calculator": "https://japan-customs-allowance.vercel.app/api/check"
+   }
+  },
+  {
+   "id": "japan-disaster-prep",
+   "name": "Japan Disaster Prep Check",
+   "site": "https://japan-disaster-prep.vercel.app",
+   "rulesEndpoint": "https://japan-disaster-prep.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-disaster-prep.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-02",
+   "effective": null,
+   "officialSources": [
+    "https://www.sankei.com/article/20261102-5DZVTGGLPVEU7EJWILSJU4TAWM/",
+    "https://www.fnn.jp/articles/-/1144215",
+    "https://www.kantei.go.jp/jp/headline/bousai/sonae.html",
+    "https://www.bousai.go.jp/kohou/kouhoubousai/r06/111/news_08.html",
+    "https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_fr_000043.html",
+    "https://www.mlit.go.jp/report/press/house05_hh_000662.html",
+    "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/h3009a/a-1b.pdf",
+    "https://www.maff.go.jp/j/zyukyu/foodstock/",
+    "https://disaportal.gsi.go.jp/",
+    "https://www.bichiku.metro.tokyo.lg.jp/"
+   ],
+   "rules": {
+    "minDays": 3,
+    "idealDays": 7,
+    "waterLitersPerPersonDay": 3,
+    "mealsPerPersonDay": 3,
+    "toiletUsesPerPersonDay": 5,
+    "petMinDays": 5,
+    "petIdealDays": 7,
+    "oldStandardBefore": "1981-06-01",
+    "woodSpecFrom": "2000-06-01",
+    "maxPersons": 30,
+    "maxDays": 30,
+    "rulesAsOf": "2026-11-02",
+    "sources": [
+     "https://www.sankei.com/article/20261102-5DZVTGGLPVEU7EJWILSJU4TAWM/",
+     "https://www.fnn.jp/articles/-/1144215",
+     "https://www.kantei.go.jp/jp/headline/bousai/sonae.html",
+     "https://www.bousai.go.jp/kohou/kouhoubousai/r06/111/news_08.html",
+     "https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_fr_000043.html",
+     "https://www.mlit.go.jp/report/press/house05_hh_000662.html",
+     "https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/h3009a/a-1b.pdf",
+     "https://www.maff.go.jp/j/zyukyu/foodstock/",
+     "https://disaportal.gsi.go.jp/",
+     "https://www.bichiku.metro.tokyo.lg.jp/"
+    ],
+    "docs": "https://japan-disaster-prep.vercel.app/openapi.json",
+    "checker": "https://japan-disaster-prep.vercel.app/api/check"
    }
   },
   {
@@ -15184,7 +15233,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-11-01",
+    "today": "2026-11-03",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

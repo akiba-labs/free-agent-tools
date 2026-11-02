@@ -34,6 +34,7 @@ export const SITES: Record<string, SiteInfo> = {
   hsp: { id: "hsp", name: "Japan HSP Points Calculator", url: "https://japan-hsp-points.vercel.app", blurb: "Highly Skilled Professional (高度専門職 / 高度人材ポイント) points for academic, specialized and management work: the full ISA points table with its no-double-count rules, 70 vs 80 (the 3-year vs 1-year permanent residence fast track), the ¥3M salary floor, what could add points, and J-Skip. Rules as of 2026-10-30; a revision is being discussed but nothing is published yet." },
   pet: { id: "pet", name: "Japan Pet Quarantine Check", url: "https://japan-pet-quarantine.vercel.app", blurb: "Bringing a dog, cat or rabbit into Japan, taking one out, or leaving and coming back: microchip → 2 rabies shots → antibody test → 180-day wait, the 40-day AQS notice, the vet check 10 days before boarding, designated regions (Hawaii, Guam, AU, NZ, Fiji, Iceland), the short-stay route, detention days if you arrive early, and the 14-day export application that becomes mandatory for dogs and rabbits from 2027-01-01. Rules as of 2026-10-31 (MAFF Animal Quarantine Service)." },
   leaving: { id: "leaving", name: "Japan Leaving Tax Check", url: "https://japan-leaving-tax.vercel.app", blurb: "Leaving Japan: which fiscal years of resident tax (住民税) are still owed (January 1 assessment date: leave by December 31 to skip next year), whether a tax agent (納税管理人) is needed, the final-salary lump-sum deduction, the year-end adjustment or 準確定申告 deadline, the 転出届 window and the pension lump-sum claim deadline. Rules as of 2026-11-01 (地方税法, 所得税法, MIC, NTA)." },
+  disaster: { id: "disaster", name: "Japan Disaster Prep Check", url: "https://japan-disaster-prep.vercel.app", blurb: "Japan's 防災庁 emergency request (事前防災徹底のための緊急要請, 2026-11-02) as a household checklist: water (3 L per person per day), meals and portable-toilet uses (5 a day) for 3 days or a week, the gap against what you have, old quake standard (旧耐震, before 1981-06-01) check and the 5-point to-do list." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -717,6 +718,37 @@ export const TOOLS: ToolDef[] = [
       today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Override today's date (default: today in Japan)."),
     }),
     example: { departureDate: "2027-03-20", employment: "employee", payMethod: "salary" },
+  },
+  {
+    name: "japan_disaster_prep_check",
+    title: "Japan 防災庁 emergency request (2026-11-02): how much water, food and portable-toilet stock does this household need, is the home old quake standard, and what's left to do?",
+    description:
+      "Turns the five-point emergency request (事前防災徹底のための緊急要請) issued by Japan's Disaster Management Agency (防災庁) on 2026-11-02 into a household checklist, rules as of 2026-11-02, from the request text, the PM's Office 災害への備え page, 防災庁 / METI portable-toilet guidance, MLIT seismic pages and the MoE pet pamphlet. Stockpile for days (default 7; the request: at least 3, ideally 1 week): drinking water 3 L per person per day (incl. cooking), 3 meals and 5 portable-toilet uses per person per day (infants: water only, milk and diapers listed), gap against haveWaterLiters / haveMeals / haveToiletUses; pets: food and water at least 5 days, ideally 7+. Building: 建築確認 before 1981-06-01 = old quake standard (旧耐震) → 耐震診断; build year 1981 → check the permit date; wooden houses 1981-06-01 – 2000-05-31 → MLIT 新耐震木造住宅検証法 owner self-check; renters → ask the landlord. builtYear accepts 1979, 昭和54, S54, 平成12, H12. Returns verdict (well_prepared | partly_prepared | not_prepared), summary, doneCount, household, days, stockpile {water {target, minimum3Days, have, gap, bottles2L}, meals, toiletUses, pets, alsoStock, rollingStock}, building {era old_standard | likely_old | new_pre2000_wood | new_standard | unknown, label, action}, request [{n, title, ja, status done | partial | todo, todo[]} ×5: 耐震・家具固定, 備蓄, ハザードマップ・避難経路, 非常持ち出し品, 防災訓練], links, note, sources, disclaimer. Use for '防災庁 緊急要請 何をすれば', '備蓄 何リットル 家族', '携帯トイレ 何回分', 'how much water to store Japan earthquake', 'is my house 旧耐震', 'Japan disaster preparedness checklist'. Not a disaster prediction (the request is a standing call to prepare). Educational, not official and not engineering or safety advice; not affiliated with 防災庁 or any government body.",
+    site: "disaster",
+    path: "/api/check",
+    inputSchema: z.object({
+      adults: z.number().int().min(0).max(30).optional().describe("Adults (default 1)."),
+      children: z.number().int().min(0).max(30).optional().describe("Children (count like adults)."),
+      infants: z.number().int().min(0).max(30).optional().describe("Babies on milk / in diapers (water only; milk and diapers listed)."),
+      elderly: z.number().int().min(0).max(30).optional().describe("Older family members."),
+      dogs: z.number().int().min(0).max(30).optional().describe("Dogs."),
+      cats: z.number().int().min(0).max(30).optional().describe("Cats."),
+      days: z.number().int().min(1).max(30).optional().describe("Days to stock for (default 7; minimum 3 per the request)."),
+      haveWaterLiters: z.number().nonnegative().optional().describe("Drinking water already stored, litres."),
+      haveMeals: z.number().nonnegative().optional().describe("Meals of stored food already on hand."),
+      haveToiletUses: z.number().nonnegative().optional().describe("Portable / emergency toilet uses (bags) already on hand."),
+      builtYear: z.union([z.number().int(), z.string()]).optional().describe("Year the home was built: 1979, 昭和54, S54, 平成12, H12."),
+      permitDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("建築確認 date on the 確認済証, YYYY-MM-DD (exact 1981-06-01 line)."),
+      buildingType: z.enum(["wood", "non_wood", "unknown"]).optional().describe("wood (木造 house) | non_wood (RC / steel, most マンション) | unknown (default)."),
+      tenure: z.enum(["own", "rent"]).optional().describe("own (default) | rent."),
+      seismicDone: z.boolean().optional().describe("Already had a passing 耐震診断 or a retrofit."),
+      furnitureFixed: z.boolean().optional().describe("Tall furniture and appliances are fixed."),
+      hazardMapChecked: z.boolean().optional().describe("Checked hazard maps for home and work."),
+      evacuationRouteChecked: z.boolean().optional().describe("Knows the evacuation site and route."),
+      goBagReady: z.boolean().optional().describe("Grab bag (非常持ち出し品) packed."),
+      drillJoined: z.boolean().optional().describe("Joined a local disaster drill."),
+    }),
+    example: { adults: 2, children: 2, days: 7, builtYear: 1979, buildingType: "wood" },
   },
 ];
 

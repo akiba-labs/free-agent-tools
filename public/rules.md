@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-01T12:45+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-03T08:30+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -9,6 +9,7 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 | [House Rules Check](https://house-rules-check.vercel.app) | 2026-10-28 | – | [house-rules-check/api/rules](https://house-rules-check.vercel.app/api/rules) | 7 |
 | [Japan Alert Decoder](https://japan-alert-decoder.vercel.app) | – | – | [japan-alert-decoder/api/rules](https://japan-alert-decoder.vercel.app/api/rules) | 35 |
 | [Japan Customs Allowance Checker](https://japan-customs-allowance.vercel.app) | 2026-10-14 | – | [japan-customs-allowance/api/rules](https://japan-customs-allowance.vercel.app/api/rules) | 7 |
+| [Japan Disaster Prep Check](https://japan-disaster-prep.vercel.app) | 2026-11-02 | – | [japan-disaster-prep/api/rules](https://japan-disaster-prep.vercel.app/api/rules) | 10 |
 | [Japan Driving Check](https://japan-driving-check.vercel.app) | 2026-10-27 | – | [japan-driving-check/api/rules](https://japan-driving-check.vercel.app/api/rules) | 7 |
 | [Japan Dual Pricing Check](https://japan-dual-pricing.vercel.app) | – | – | [japan-dual-pricing/api/rules](https://japan-dual-pricing.vercel.app/api/rules) | 23 |
 | [Japan HSP Points Calculator](https://japan-hsp-points.vercel.app) | 2026-10-30 | – | [japan-hsp-points/api/rules](https://japan-hsp-points.vercel.app/api/rules) | 7 |
@@ -82,6 +83,18 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 - https://www.customs.go.jp/kaigairyoko/zeigaku.htm
 - https://www.customs.go.jp/kaigairyoko/menzei.htm
 - https://www.customs.go.jp/english/summary/cigarette_leaflet_e.pdf
+
+### Japan Disaster Prep Check
+- https://www.sankei.com/article/20261102-5DZVTGGLPVEU7EJWILSJU4TAWM/
+- https://www.fnn.jp/articles/-/1144215
+- https://www.kantei.go.jp/jp/headline/bousai/sonae.html
+- https://www.bousai.go.jp/kohou/kouhoubousai/r06/111/news_08.html
+- https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_fr_000043.html
+- https://www.mlit.go.jp/report/press/house05_hh_000662.html
+- https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/h3009a/a-1b.pdf
+- https://www.maff.go.jp/j/zyukyu/foodstock/
+- https://disaportal.gsi.go.jp/
+- https://www.bichiku.metro.tokyo.lg.jp/
 
 ### Japan Driving Check
 - https://www.npa.go.jp/policies/application/license_renewal/have_DL_issed_another_country.html
