@@ -35,6 +35,7 @@ export const SITES: Record<string, SiteInfo> = {
   pet: { id: "pet", name: "Japan Pet Quarantine Check", url: "https://japan-pet-quarantine.vercel.app", blurb: "Bringing a dog, cat or rabbit into Japan, taking one out, or leaving and coming back: microchip → 2 rabies shots → antibody test → 180-day wait, the 40-day AQS notice, the vet check 10 days before boarding, designated regions (Hawaii, Guam, AU, NZ, Fiji, Iceland), the short-stay route, detention days if you arrive early, and the 14-day export application that becomes mandatory for dogs and rabbits from 2027-01-01. Rules as of 2026-10-31 (MAFF Animal Quarantine Service)." },
   leaving: { id: "leaving", name: "Japan Leaving Tax Check", url: "https://japan-leaving-tax.vercel.app", blurb: "Leaving Japan: which fiscal years of resident tax (住民税) are still owed (January 1 assessment date: leave by December 31 to skip next year), whether a tax agent (納税管理人) is needed, the final-salary lump-sum deduction, the year-end adjustment or 準確定申告 deadline, the 転出届 window and the pension lump-sum claim deadline. Rules as of 2026-11-01 (地方税法, 所得税法, MIC, NTA)." },
   disaster: { id: "disaster", name: "Japan Disaster Prep Check", url: "https://japan-disaster-prep.vercel.app", blurb: "Japan's 防災庁 emergency request (事前防災徹底のための緊急要請, 2026-11-02) as a household checklist: water (3 L per person per day), meals and portable-toilet uses (5 a day) for 3 days or a week, the gap against what you have, old quake standard (旧耐震, before 1981-06-01) check and the 5-point to-do list." },
+  lost: { id: "lost", name: "Japan Lost Item Check", url: "https://japan-lost-item.vercel.app", blurb: "Lost something in Japan (wallet, phone, passport, residence card, bag, umbrella) on a train, subway, Shinkansen, bus, taxi, at an airport, shop or on the street: steps in order, the operator's lost-and-found contact, the police found-items search by prefecture, how long found items are kept under 遺失物法 (3 months; umbrellas and clothing 2 weeks), facility hand-over periods, the 5–20% finder's reward and the residence card 14-day reissue deadline. Rules as of 2026-11-03." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -749,6 +750,28 @@ export const TOOLS: ToolDef[] = [
       drillJoined: z.boolean().optional().describe("Joined a local disaster drill."),
     }),
     example: { adults: 2, children: 2, days: 7, builtYear: 1979, buildingType: "wood" },
+  },
+  {
+    name: "japan_lost_item_check",
+    title: "Lost something in Japan: who to contact first, what to stop, how long is it kept, is it too late, and when must a lost residence card be replaced?",
+    description:
+      "Applies Japan's Lost Property Act (遺失物法) and related rules as of 2026-11-03 (遺失物法 and 施行令 via e-Gov, NPA lost-property site, ISA residence card page, Digital Agency, operator lost-and-found pages) to a lost item. items: wallet, cash, phone, passport, residence_card, mynumber_card, credit_card, ic_card, drivers_license, keys, bag, laptop, camera, jewelry, umbrella, clothing, other (array or comma string; aliases 財布, スマホ, 在留カード, suica). place: train | subway | shinkansen | bus | taxi | airport | plane | shop | hotel | street | unknown. Rules: found items kept 3 months from hand-in (umbrellas / clothing may be disposed of 2 weeks after notice); shops, hotels, taxis pass items to police within 1 week; railways, route buses, ferries, scheduled airlines (特例施設占有者) may keep them if they report within 2 weeks (cash / securities / jewellery ≥ ¥100,000 to police within 1 week); reward 5–20% (facility split 2.5–10% each), claimable 1 month after return; personal-information items never go to the finder; residence card reissue within 14 days of noticing (or of re-entry if noticed abroad), police acceptance number required; My Number card suspension 0120-95-0178 (24 h). Contacts: Tokyo Metro, JR East / Central / West, Toei, Osaka Metro, Tokyo taxis, Narita, Haneda, Kansai; police search (Tokyo and Osaka own sites, 45 prefectures share the NPA system). Returns verdict (act_now | in_window | window_closing | likely_gone), summary, facility {kind, toPoliceWithinDays, highValue}, dates {safeLastClaimDate, daysLeft, likelyGoneAfter, shortHoldDisposalFrom}, timeline[], steps[], residenceCard {reissueBy, daysLeft, overdue}, reward {minJPY, maxJPY}, contacts {operator {name, url, phone, hours, note}, policeSearch}, links, note, sources, disclaimer. Use for 'lost my wallet on the Tokyo subway', 'left my phone in a taxi in Japan', '落とし物 どうする', '忘れ物 電車 問い合わせ', '在留カード 紛失 期限', 'how long does Japan keep lost items'. Cannot search for the item. Educational, not legal advice; not affiliated with the police, NPA, ISA or any railway.",
+    site: "lost",
+    path: "/api/check",
+    inputSchema: z.object({
+      items: z.union([z.array(z.string()).max(12), z.string()]).optional().describe("Lost item(s): wallet, cash, phone, passport, residence_card, mynumber_card, credit_card, ic_card, drivers_license, keys, bag, laptop, camera, jewelry, umbrella, clothing, other."),
+      place: z.enum(["train", "subway", "shinkansen", "bus", "taxi", "airport", "plane", "shop", "hotel", "street", "unknown"]).optional().describe("Where it was lost (default unknown)."),
+      operator: z.enum(["jr_east", "jr_central", "jr_west", "tokyo_metro", "toei", "osaka_metro", "tokyo_taxi", "narita", "haneda", "kansai", "other", "unknown"]).optional().describe("Operator for a direct lost-and-found contact (shinkansen → jr_central, taxi → tokyo_taxi by default)."),
+      prefecture: z.string().optional().describe("Prefecture in romaji (tokyo, osaka, kyoto…) for the police found-items search."),
+      lostDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Date lost, YYYY-MM-DD (default today JST)."),
+      today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
+      noticedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Date the loss was noticed (residence card 14 days run from here)."),
+      visitor: z.boolean().optional().describe("Leaving Japan soon (adds overseas contact / proxy / shipping steps)."),
+      departureDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Date leaving Japan, YYYY-MM-DD."),
+      valueJPY: z.number().nonnegative().optional().describe("Value of the item(s) in yen → reward range."),
+      cashJPY: z.number().nonnegative().optional().describe("Cash inside in yen (≥ ¥100,000 → 1-week high-value rule)."),
+    }),
+    example: { items: ["wallet", "residence_card"], place: "subway", operator: "tokyo_metro", lostDate: "2026-11-01", today: "2026-11-03" },
   },
 ];
 

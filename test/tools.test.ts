@@ -191,10 +191,7 @@ test("japan_leaving_tax_check on the leaving site", async () => {
   assert.equal(t.inputSchema.safeParse({ departureDate: "2027-03-20", payMethod: "cash" }).success, false);
 });
 
-test("37 tools, v1.21.0, japan_disaster_prep_check on the disaster site", async () => {
-  assert.equal(TOOLS.length, 37);
-  const { readFileSync } = await import("node:fs");
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.21.0", f);
+test("japan_disaster_prep_check on the disaster site", async () => {
   const t = TOOLS.find((x) => x.name === "japan_disaster_prep_check");
   assert.ok(t);
   assert.equal(SITES[t.site].url, "https://japan-disaster-prep.vercel.app");
@@ -206,4 +203,20 @@ test("37 tools, v1.21.0, japan_disaster_prep_check on the disaster site", async 
   assert.equal(t.inputSchema.safeParse({ days: 0 }).success, false);
   assert.equal(t.inputSchema.safeParse({ buildingType: "castle" }).success, false);
   assert.equal(t.inputSchema.safeParse({ permitDate: "1981/06/01" }).success, false);
+});
+
+test("38 tools, v1.22.0, japan_lost_item_check on the lost site", async () => {
+  assert.equal(TOOLS.length, 38);
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.22.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_lost_item_check");
+  assert.ok(t);
+  assert.equal(SITES[t.site].url, "https://japan-lost-item.vercel.app");
+  assert.equal(t.path, "/api/check");
+  assert.equal(t.inputSchema.safeParse(t.example).success, true);
+  assert.equal(t.inputSchema.safeParse({}).success, true);
+  assert.equal(t.inputSchema.safeParse({ items: "財布,スマホ", place: "taxi", visitor: true, valueJPY: 30000 }).success, true);
+  assert.equal(t.inputSchema.safeParse({ place: "moon" }).success, false);
+  assert.equal(t.inputSchema.safeParse({ lostDate: "01/11/2026" }).success, false);
+  assert.equal(t.inputSchema.safeParse({ valueJPY: -1 }).success, false);
 });

@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-03T08:30+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-03T12:46+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -15,6 +15,7 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 | [Japan HSP Points Calculator](https://japan-hsp-points.vercel.app) | 2026-10-30 | – | [japan-hsp-points/api/rules](https://japan-hsp-points.vercel.app/api/rules) | 7 |
 | [Japan International Postage 2027](https://japan-intl-postage.vercel.app) | 2026-10-19 | – | [japan-intl-postage/api/rules](https://japan-intl-postage.vercel.app/api/rules) | 7 |
 | [Japan Leaving Tax Check](https://japan-leaving-tax.vercel.app) | 2026-11-01 | – | [japan-leaving-tax/api/rules](https://japan-leaving-tax.vercel.app/api/rules) | 0 |
+| [Japan Lost Item Check](https://japan-lost-item.vercel.app) | 2026-11-03 | – | [japan-lost-item/api/rules](https://japan-lost-item.vercel.app/api/rules) | 12 |
 | [Japan Luggage Check](https://japan-luggage.vercel.app) | 2026-10-12 | – | [japan-luggage/api/rules](https://japan-luggage.vercel.app/api/rules) | 8 |
 | [Japan My Number Card Check](https://japan-mynumber-card-check.vercel.app) | 2026-10-29 | – | [japan-mynumber-card-check/api/rules](https://japan-mynumber-card-check.vercel.app/api/rules) | 9 |
 | [Japan Overseas Dependents Check](https://japan-overseas-dependents.vercel.app) | 2026-10-25 | – | [japan-overseas-dependents/api/rules](https://japan-overseas-dependents.vercel.app/api/rules) | 7 |
@@ -149,6 +150,20 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 - https://www.post.japanpost.jp/send/oversea/charge/list-normal/zone4.html
 
 ### Japan Leaving Tax Check
+
+### Japan Lost Item Check
+- https://laws.e-gov.go.jp/law/418AC0000000073
+- https://laws.e-gov.go.jp/law/419CO0000000021
+- https://www.npa.go.jp/bureau/soumu/ishitsubutsu/otoshimono/en/index.html
+- https://www.npa.go.jp/bureau/soumu/ishitsubutsu/otoshimono/en/lost-institution.html
+- https://www.npa.go.jp/bureau/soumu/ishitsubutsu/otoshimono/en/loss.html
+- https://www.npa.go.jp/bureau/soumu/ishitsubutsu/otoshimono/en/others.html
+- https://www.npa.go.jp/bureau/soumu/ishitsubutsu/otoshimono/todofukenishitubutu.html
+- https://www.police.pref.kanagawa.jp/tetsuzuki/otoshimono/mesa1905.html
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00010.html
+- https://services.digital.go.jp/mynumbercard/lost-stolen/
+- https://www.keishicho.metro.tokyo.lg.jp/multilingual/english/finding_services/lost_and_found/lost_found.html
+- https://www.tokyometro.jp/lang_en/support/lost/index.html
 
 ### Japan Luggage Check
 - https://www.kuronekoyamato.co.jp/ytc/search/estimate/ichiran.html
