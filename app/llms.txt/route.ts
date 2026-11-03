@@ -19,6 +19,7 @@ ${Object.values(SITES).map((s) => `- ${s.name}: ${s.url} (OpenAPI: ${s.url}/open
 
 ## Japan rules index (machine-readable)
 - ${SERVER_URL}/rules.json: thresholds, fees, effective dates and official sources behind every Japan rule tool, copied from each tool's /api/rules (human-readable: ${SERVER_URL}/rules.md)
+- ${SERVER_URL}/checklist: free printable Japan trip pre-arrival checklist (PDF at ${SERVER_URL}/japan-trip-checklist.pdf), generated from rules.json
 
 ## Rules for agents
 - Every result has a disclaimer field. Pass it on to the user.

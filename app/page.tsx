@@ -140,6 +140,7 @@ export default function Home() {
         </details>
       ))}
 
+      <p className="small">Visiting Japan? <a href="/checklist">Get the free pre-arrival checklist (PDF, no signup)</a>.</p>
       <p className="small">Using the Japan tools at work? <a href="/pro">Tell us which paid add-on you&apos;d use</a> (planned, nothing for sale, no signup).</p>
 
       <h2>Test it</h2>
