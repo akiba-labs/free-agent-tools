@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-03T12:46+09:00",
+ "generatedAt": "2026-11-04T12:41+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -13200,6 +13200,768 @@
    }
   },
   {
+   "id": "japan-medical-cost-cap",
+   "name": "Japan High-Cost Medical Expense Check",
+   "site": "https://japan-medical-cost-cap.vercel.app",
+   "rulesEndpoint": "https://japan-medical-cost-cap.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-medical-cost-cap.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-04",
+   "effective": null,
+   "officialSources": [
+    "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+    "https://www.mhlw.go.jp/content/12400000/001726232.pdf",
+    "https://www.mhlw.go.jp/content/12400000/001729632.pdf",
+    "https://www.kyoukaikenpo.or.jp/g3/sb3030/r150/",
+    "https://www.city.setagaya.lg.jp/02060/33049.html",
+    "https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html",
+    "https://www.city.fukuoka.lg.jp/hofuku/hokennenkin/hp/kokuminkenkouhoken/09-00.html",
+    "https://laws.e-gov.go.jp/law/315IO0000000243"
+   ],
+   "rules": {
+    "formula": "monthly cap = base + max(0, 10割 total medical cost − threshold) × 1%, rounded to the yen; flat caps for lower bands",
+    "schedules": {
+     "pre": {
+      "id": "pre",
+      "label": "Before the 2026 review (treatment up to July 2026)",
+      "from": null,
+      "to": "2026-07"
+     },
+     "r8": {
+      "id": "r8",
+      "label": "Stage 1 (treatment Aug 2026 – Jul 2027): higher caps, new annual cap",
+      "from": "2026-08",
+      "to": "2027-07"
+     },
+     "r9": {
+      "id": "r9",
+      "label": "Stage 2 (treatment from Aug 2027): 12 income bands",
+      "from": "2027-08",
+      "to": null
+     }
+    },
+    "manyTimes": "多数回該当: from the 4th month with a benefit in the last 12 months, a lower flat cap applies (none for 70+ 低所得I). 70+ outpatient-only months don't count.",
+    "annualCap": "From treatment in Aug 2026: yearly cap per Aug–Jul period on what you paid after monthly refunds (and the 70+ outpatient yearly cap).",
+    "claim": "Claim within 2 years from the 1st of the month after treatment.",
+    "under70Combine": "Under 70: only bills of ¥21,000+ per facility per month (inpatient / outpatient / dental separate) can be combined within the household.",
+    "bands": {
+     "y1650": {
+      "id": "y1650",
+      "label": "Income about ¥16.5M+",
+      "labelJa": "年収約1,650万円〜",
+      "annualIncome": "about ¥16.5M+",
+      "smr": "¥1.27M+",
+      "nhiIncome": "over ¥13.56M",
+      "taxable70": "¥11.07M+",
+      "legacy": "ア"
+     },
+     "y1410": {
+      "id": "y1410",
+      "label": "Income about ¥14.1M–16.5M",
+      "labelJa": "年収約1,410〜1,650万円",
+      "annualIncome": "about ¥14.1M–16.5M",
+      "smr": "¥1.03M–1.21M",
+      "nhiIncome": "¥11.1M–13.56M",
+      "taxable70": "¥9.0M–11.07M",
+      "legacy": "ア"
+     },
+     "y1160": {
+      "id": "y1160",
+      "label": "Income about ¥11.6M–14.1M",
+      "labelJa": "年収約1,160〜1,410万円",
+      "annualIncome": "about ¥11.6M–14.1M",
+      "smr": "¥830k–980k",
+      "nhiIncome": "¥9.01M–11.1M",
+      "taxable70": "¥6.9M–9.0M",
+      "legacy": "ア"
+     },
+     "y1040": {
+      "id": "y1040",
+      "label": "Income about ¥10.4M–11.6M",
+      "labelJa": "年収約1,040〜1,160万円",
+      "annualIncome": "about ¥10.4M–11.6M",
+      "smr": "¥710k–790k",
+      "nhiIncome": "¥8.09M–9.01M",
+      "taxable70": "¥6.14M–6.9M",
+      "legacy": "イ"
+     },
+     "y950": {
+      "id": "y950",
+      "label": "Income about ¥9.5M–10.4M",
+      "labelJa": "年収約950〜1,040万円",
+      "annualIncome": "about ¥9.5M–10.4M",
+      "smr": "¥620k–680k",
+      "nhiIncome": "¥6.79M–8.09M",
+      "taxable70": "¥5.04M–6.14M",
+      "legacy": "イ"
+     },
+     "y770": {
+      "id": "y770",
+      "label": "Income about ¥7.7M–9.5M",
+      "labelJa": "年収約770〜950万円",
+      "annualIncome": "about ¥7.7M–9.5M",
+      "smr": "¥530k–590k",
+      "nhiIncome": "¥6.0M–6.79M",
+      "taxable70": "¥3.8M–5.04M",
+      "legacy": "イ"
+     },
+     "y650": {
+      "id": "y650",
+      "label": "Income about ¥6.5M–7.7M",
+      "labelJa": "年収約650〜770万円",
+      "annualIncome": "about ¥6.5M–7.7M",
+      "smr": "¥440k–500k",
+      "nhiIncome": "¥4.1M–6.0M",
+      "taxable70": "¥2.8M–3.8M",
+      "legacy": "ウ"
+     },
+     "y510": {
+      "id": "y510",
+      "label": "Income about ¥5.1M–6.5M",
+      "labelJa": "年収約510〜650万円",
+      "annualIncome": "about ¥5.1M–6.5M",
+      "smr": "¥360k–410k",
+      "nhiIncome": "¥3.13M–4.1M",
+      "taxable70": "¥2.03M–2.8M",
+      "legacy": "ウ"
+     },
+     "y370": {
+      "id": "y370",
+      "label": "Income about ¥3.7M–5.1M",
+      "labelJa": "年収約370〜510万円",
+      "annualIncome": "about ¥3.7M–5.1M",
+      "smr": "¥280k–340k",
+      "nhiIncome": "¥2.1M–3.13M",
+      "taxable70": "¥1.45M–2.03M",
+      "legacy": "ウ"
+     },
+     "y260": {
+      "id": "y260",
+      "label": "Income about ¥2.6M–3.7M",
+      "labelJa": "年収約260〜370万円",
+      "annualIncome": "about ¥2.6M–3.7M",
+      "smr": "¥200k–260k",
+      "nhiIncome": "¥1.27M–2.1M",
+      "taxable70": "¥570k–1.45M",
+      "legacy": "エ"
+     },
+     "y200": {
+      "id": "y200",
+      "label": "Income about ¥2.0M–2.6M",
+      "labelJa": "年収約200〜260万円",
+      "annualIncome": "about ¥2.0M–2.6M",
+      "smr": "¥160k–190k",
+      "nhiIncome": "¥860k–1.27M",
+      "taxable70": "¥280k–570k",
+      "legacy": "エ"
+     },
+     "y0": {
+      "id": "y0",
+      "label": "Income up to about ¥2.0M",
+      "labelJa": "年収約200万円以下",
+      "annualIncome": "up to about ¥2.0M",
+      "smr": "¥150k or less",
+      "nhiIncome": "¥860k or less",
+      "taxable70": "under ¥280k",
+      "legacy": "エ"
+     },
+     "nontaxable": {
+      "id": "nontaxable",
+      "label": "Resident-tax exempt (住民税非課税)",
+      "labelJa": "住民税非課税（低所得者・低所得II）",
+      "annualIncome": "resident-tax exempt",
+      "smr": "—",
+      "nhiIncome": "—",
+      "taxable70": "—",
+      "legacy": "オ / 低所得II"
+     },
+     "nontaxable_low": {
+      "id": "nontaxable_low",
+      "label": "70+, tax exempt with very low income (低所得I)",
+      "labelJa": "70歳以上・低所得I（一定所得以下）",
+      "annualIncome": "70+ tax exempt, pension ≤ about ¥826,500",
+      "smr": "—",
+      "nhiIncome": "—",
+      "taxable70": "—",
+      "legacy": "低所得I"
+     }
+    },
+    "table": {
+     "pre": {
+      "under70": {
+       "y1650": {
+        "base": 252600,
+        "threshold": 842000,
+        "many": 140100,
+        "annual": null
+       },
+       "y1410": {
+        "base": 252600,
+        "threshold": 842000,
+        "many": 140100,
+        "annual": null
+       },
+       "y1160": {
+        "base": 252600,
+        "threshold": 842000,
+        "many": 140100,
+        "annual": null
+       },
+       "y1040": {
+        "base": 167400,
+        "threshold": 558000,
+        "many": 93000,
+        "annual": null
+       },
+       "y950": {
+        "base": 167400,
+        "threshold": 558000,
+        "many": 93000,
+        "annual": null
+       },
+       "y770": {
+        "base": 167400,
+        "threshold": 558000,
+        "many": 93000,
+        "annual": null
+       },
+       "y650": {
+        "base": 80100,
+        "threshold": 267000,
+        "many": 44400,
+        "annual": null
+       },
+       "y510": {
+        "base": 80100,
+        "threshold": 267000,
+        "many": 44400,
+        "annual": null
+       },
+       "y370": {
+        "base": 80100,
+        "threshold": 267000,
+        "many": 44400,
+        "annual": null
+       },
+       "y260": {
+        "base": 57600,
+        "threshold": null,
+        "many": 44400,
+        "annual": null
+       },
+       "y200": {
+        "base": 57600,
+        "threshold": null,
+        "many": 44400,
+        "annual": null
+       },
+       "y0": {
+        "base": 57600,
+        "threshold": null,
+        "many": 44400,
+        "annual": null
+       },
+       "nontaxable": {
+        "base": 35400,
+        "threshold": null,
+        "many": 24600,
+        "annual": null
+       }
+      },
+      "70plus": {
+       "y1650": {
+        "base": 252600,
+        "threshold": 842000,
+        "many": 140100,
+        "annual": null
+       },
+       "y1410": {
+        "base": 252600,
+        "threshold": 842000,
+        "many": 140100,
+        "annual": null
+       },
+       "y1160": {
+        "base": 252600,
+        "threshold": 842000,
+        "many": 140100,
+        "annual": null
+       },
+       "y1040": {
+        "base": 167400,
+        "threshold": 558000,
+        "many": 93000,
+        "annual": null
+       },
+       "y950": {
+        "base": 167400,
+        "threshold": 558000,
+        "many": 93000,
+        "annual": null
+       },
+       "y770": {
+        "base": 167400,
+        "threshold": 558000,
+        "many": 93000,
+        "annual": null
+       },
+       "y650": {
+        "base": 80100,
+        "threshold": 267000,
+        "many": 44400,
+        "annual": null
+       },
+       "y510": {
+        "base": 80100,
+        "threshold": 267000,
+        "many": 44400,
+        "annual": null
+       },
+       "y370": {
+        "base": 80100,
+        "threshold": 267000,
+        "many": 44400,
+        "annual": null
+       },
+       "y260": {
+        "base": 57600,
+        "threshold": null,
+        "many": 44400,
+        "annual": null,
+        "outpatient": 18000,
+        "outpatientAnnual": 144000
+       },
+       "y200": {
+        "base": 57600,
+        "threshold": null,
+        "many": 44400,
+        "annual": null,
+        "outpatient": 18000,
+        "outpatientAnnual": 144000
+       },
+       "y0": {
+        "base": 57600,
+        "threshold": null,
+        "many": 44400,
+        "annual": null,
+        "outpatient": 18000,
+        "outpatientAnnual": 144000
+       },
+       "nontaxable": {
+        "base": 24600,
+        "threshold": null,
+        "many": null,
+        "annual": null,
+        "outpatient": 8000,
+        "outpatientAnnual": null
+       },
+       "nontaxable_low": {
+        "base": 15000,
+        "threshold": null,
+        "many": null,
+        "annual": null,
+        "outpatient": 8000,
+        "outpatientAnnual": null
+       }
+      }
+     },
+     "r8": {
+      "under70": {
+       "y1650": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1410": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1160": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1040": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y950": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y770": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y650": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y510": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y370": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y260": {
+        "base": 61500,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y200": {
+        "base": 61500,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y0": {
+        "base": 61500,
+        "threshold": null,
+        "many": 44400,
+        "annual": 410000
+       },
+       "nontaxable": {
+        "base": 36900,
+        "threshold": null,
+        "many": 24600,
+        "annual": 290000
+       }
+      },
+      "70plus": {
+       "y1650": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1410": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1160": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1040": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y950": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y770": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y650": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y510": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y370": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y260": {
+        "base": 61500,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000,
+        "outpatient": 22000,
+        "outpatientAnnual": 216000
+       },
+       "y200": {
+        "base": 61500,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000,
+        "outpatient": 22000,
+        "outpatientAnnual": 216000
+       },
+       "y0": {
+        "base": 61500,
+        "threshold": null,
+        "many": 44400,
+        "annual": 410000,
+        "outpatient": 22000,
+        "outpatientAnnual": 216000
+       },
+       "nontaxable": {
+        "base": 25700,
+        "threshold": null,
+        "many": 24600,
+        "annual": 290000,
+        "outpatient": 11000,
+        "outpatientAnnual": 96000
+       },
+       "nontaxable_low": {
+        "base": 15700,
+        "threshold": null,
+        "many": null,
+        "annual": 180000,
+        "outpatient": 8000,
+        "outpatientAnnual": null
+       }
+      }
+     },
+     "r9": {
+      "under70": {
+       "y1650": {
+        "base": 342000,
+        "threshold": 1140000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1410": {
+        "base": 303000,
+        "threshold": 1010000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1160": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1040": {
+        "base": 209400,
+        "threshold": 698000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y950": {
+        "base": 194400,
+        "threshold": 648000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y770": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y650": {
+        "base": 110400,
+        "threshold": 368000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y510": {
+        "base": 98100,
+        "threshold": 327000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y370": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y260": {
+        "base": 69600,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y200": {
+        "base": 65400,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y0": {
+        "base": 61500,
+        "threshold": null,
+        "many": 34500,
+        "annual": 410000
+       },
+       "nontaxable": {
+        "base": 36900,
+        "threshold": null,
+        "many": 24600,
+        "annual": 290000
+       }
+      },
+      "70plus": {
+       "y1650": {
+        "base": 342000,
+        "threshold": 1140000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1410": {
+        "base": 303000,
+        "threshold": 1010000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1160": {
+        "base": 270300,
+        "threshold": 901000,
+        "many": 140100,
+        "annual": 1680000
+       },
+       "y1040": {
+        "base": 209400,
+        "threshold": 698000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y950": {
+        "base": 194400,
+        "threshold": 648000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y770": {
+        "base": 179100,
+        "threshold": 597000,
+        "many": 93000,
+        "annual": 1110000
+       },
+       "y650": {
+        "base": 110400,
+        "threshold": 368000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y510": {
+        "base": 98100,
+        "threshold": 327000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y370": {
+        "base": 85800,
+        "threshold": 286000,
+        "many": 44400,
+        "annual": 530000
+       },
+       "y260": {
+        "base": 69600,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000,
+        "outpatient": 28000,
+        "outpatientAnnual": 216000
+       },
+       "y200": {
+        "base": 65400,
+        "threshold": null,
+        "many": 44400,
+        "annual": 530000,
+        "outpatient": 28000,
+        "outpatientAnnual": 216000
+       },
+       "y0": {
+        "base": 61500,
+        "threshold": null,
+        "many": 34500,
+        "annual": 410000,
+        "outpatient": 22000,
+        "outpatientAnnual": 216000
+       },
+       "nontaxable": {
+        "base": 25700,
+        "threshold": null,
+        "many": 24600,
+        "annual": 290000,
+        "outpatient": 13000,
+        "outpatientAnnual": 96000
+       },
+       "nontaxable_low": {
+        "base": 15700,
+        "threshold": null,
+        "many": null,
+        "annual": 180000,
+        "outpatient": 8000,
+        "outpatientAnnual": null
+       }
+      }
+     }
+    },
+    "ageGroups": [
+     "under70",
+     "70plus"
+    ],
+    "bandIds": [
+     "y1650",
+     "y1410",
+     "y1160",
+     "y1040",
+     "y950",
+     "y770",
+     "y650",
+     "y510",
+     "y370",
+     "y260",
+     "y200",
+     "y0",
+     "nontaxable",
+     "nontaxable_low"
+    ],
+    "settings": [
+     "inpatient",
+     "outpatient"
+    ],
+    "rulesAsOf": "2026-11-04",
+    "sources": [
+     "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+     "https://www.mhlw.go.jp/content/12400000/001726232.pdf",
+     "https://www.mhlw.go.jp/content/12400000/001729632.pdf",
+     "https://www.kyoukaikenpo.or.jp/g3/sb3030/r150/",
+     "https://www.city.setagaya.lg.jp/02060/33049.html",
+     "https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html",
+     "https://www.city.fukuoka.lg.jp/hofuku/hokennenkin/hp/kokuminkenkouhoken/09-00.html",
+     "https://laws.e-gov.go.jp/law/315IO0000000243"
+    ],
+    "disclaimer": "Educational estimate, not medical, financial or legal advice. Not affiliated with the Ministry of Health, Labour and Welfare (MHLW), Japan Health Insurance Association (協会けんぽ), any health insurance society, city NHI office or hospital. Your insurer decides the actual benefit; extra benefits (付加給付) and local subsidies can lower your cost further. Rules as of 2026-11-04.",
+    "docs": "https://japan-medical-cost-cap.vercel.app/openapi.json",
+    "checker": "https://japan-medical-cost-cap.vercel.app/api/check"
+   }
+  },
+  {
    "id": "japan-mynumber-card-check",
    "name": "Japan My Number Card Check",
    "site": "https://japan-mynumber-card-check.vercel.app",
@@ -15356,7 +16118,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-11-03",
+    "today": "2026-11-04",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

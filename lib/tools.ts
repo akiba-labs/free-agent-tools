@@ -36,6 +36,7 @@ export const SITES: Record<string, SiteInfo> = {
   leaving: { id: "leaving", name: "Japan Leaving Tax Check", url: "https://japan-leaving-tax.vercel.app", blurb: "Leaving Japan: which fiscal years of resident tax (住民税) are still owed (January 1 assessment date: leave by December 31 to skip next year), whether a tax agent (納税管理人) is needed, the final-salary lump-sum deduction, the year-end adjustment or 準確定申告 deadline, the 転出届 window and the pension lump-sum claim deadline. Rules as of 2026-11-01 (地方税法, 所得税法, MIC, NTA)." },
   disaster: { id: "disaster", name: "Japan Disaster Prep Check", url: "https://japan-disaster-prep.vercel.app", blurb: "Japan's 防災庁 emergency request (事前防災徹底のための緊急要請, 2026-11-02) as a household checklist: water (3 L per person per day), meals and portable-toilet uses (5 a day) for 3 days or a week, the gap against what you have, old quake standard (旧耐震, before 1981-06-01) check and the 5-point to-do list." },
   lost: { id: "lost", name: "Japan Lost Item Check", url: "https://japan-lost-item.vercel.app", blurb: "Lost something in Japan (wallet, phone, passport, residence card, bag, umbrella) on a train, subway, Shinkansen, bus, taxi, at an airport, shop or on the street: steps in order, the operator's lost-and-found contact, the police found-items search by prefecture, how long found items are kept under 遺失物法 (3 months; umbrellas and clothing 2 weeks), facility hand-over periods, the 5–20% finder's reward and the residence card 14-day reissue deadline. Rules as of 2026-11-03." },
+  medical: { id: "medical", name: "Japan High-Cost Medical Expense Check", url: "https://japan-medical-cost-cap.vercel.app", blurb: "Japan 高額療養費 (high-cost medical expense benefit): the monthly cap (自己負担限度額) for your age and income band, what you really pay, the refund, the 4th-month 多数回 rate, the new Aug–Jul yearly cap (年間上限) for treatment from Aug 2026, the same bill under the Aug 2027 12-band schedule and the 2-year claim deadline. Rules as of 2026-11-04 (MHLW review tables, 協会けんぽ, city NHI pages)." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -772,6 +773,32 @@ export const TOOLS: ToolDef[] = [
       cashJPY: z.number().nonnegative().optional().describe("Cash inside in yen (≥ ¥100,000 → 1-week high-value rule)."),
     }),
     example: { items: ["wallet", "residence_card"], place: "subway", operator: "tokyo_metro", lostDate: "2026-11-01", today: "2026-11-03" },
+  },
+  {
+    name: "japan_high_cost_medical_check",
+    title: "Big medical bill in Japan: what's my 高額療養費 monthly cap, how much comes back, does the new yearly cap apply, and what changes in Aug 2027?",
+    description:
+      "Applies Japan's high-cost medical expense benefit (高額療養費) as of 2026-11-04 (MHLW review tables 001726232.pdf, 協会けんぽ, Setagaya / Machida / Fukuoka NHI pages). Monthly cap = base + max(0, 10割 total − threshold) × 1% (flat for lower bands), three schedules by treatment month: up to 2026-07; 2026-08…2027-07 (≈7% higher, e.g. income ¥3.7M–7.7M 85,800 + (x − 286,000) × 1%, ≤ ¥3.7M ¥61,500, tax exempt ¥36,900); from 2027-08 twelve bands (e.g. ¥5.1M–6.5M 98,100 + (x − 327,000), ¥6.5M–7.7M 110,400 + (x − 368,000), ¥16.5M+ 342,000 + (x − 1,140,000)). 多数回該当 from the 4th benefit month in 12 (140,100 / 93,000 / 44,400 / 24,600; 34,500 for ≤ ¥2M from 2027-08). New yearly cap per Aug–Jul on what was paid after monthly refunds (¥1.68M / ¥1.11M / ¥530k / ¥410k / ¥290k / 70+ 低所得I ¥180k). 70+ outpatient caps (一般 ¥18,000 → ¥22,000 → ¥28,000/¥22,000, yearly ¥216,000). Income one way: band (y1650, y1410, y1160, y1040, y950, y770, y650, y510, y370, y260, y200, y0, nontaxable, nontaxable_low; ア/イ/ウ/エ/オ accepted), standardMonthlyRemuneration (標準報酬月額), nhiIncome (旧ただし書き所得), taxableIncome (70+ 課税所得), rough annualIncome, or nonTaxable. Optional months tracker (array [{month, totalCost|copay, setting}] or '2026-08:300000,2026-09:300000') auto-applies 多数回 and the yearly cap. Returns verdict (under_cap | cap_applies | many_times_cap | annual_cap_reached), summary, band, schedule, month {monthlyCap, formula, youPay, monthlyRefund, manyTimes}, caps, annualCap {period, amount}, from2027 {youPay, changeJPY}, beforeAug2026, claim {deadline: 2 years from the 1st of the next month}, tracker, steps, notCounted, sources, disclaimer. Use for '高額療養費 いくら戻る', '自己負担限度額 計算', '高額療養費 2027年8月 変更', '年間上限', 'hospital bill Japan how much will I pay', 'Japan medical cost cap'. Insured care only (meals, private rooms, 先進医療 excluded). Educational estimate, not medical, financial or legal advice; the insurer decides.",
+    site: "medical",
+    path: "/api/check",
+    inputSchema: z.object({
+      month: z.string().regex(/^\d{4}-\d{2}$/).optional().describe("Treatment month YYYY-MM (default this month JST); picks the schedule."),
+      totalCost: z.number().nonnegative().optional().describe("10割 total medical cost (総医療費) in yen."),
+      copay: z.number().nonnegative().optional().describe("Insured copay paid at the counter (窓口負担) in yen; give this or totalCost."),
+      ageGroup: z.enum(["under70", "70plus"]).optional().describe("under70 (default) or 70plus (70–74 and 75+ 後期高齢者)."),
+      band: z.enum(["y1650", "y1410", "y1160", "y1040", "y950", "y770", "y650", "y510", "y370", "y260", "y200", "y0", "nontaxable", "nontaxable_low"]).optional().describe("Income band (y370 = income about ¥3.7M–5.1M)."),
+      standardMonthlyRemuneration: z.number().nonnegative().optional().describe("Employee insurance 標準報酬月額 in yen (e.g. 300000)."),
+      nhiIncome: z.number().nonnegative().optional().describe("NHI 旧ただし書き所得 (household) in yen."),
+      taxableIncome: z.number().nonnegative().optional().describe("70+: 課税所得 in yen."),
+      annualIncome: z.number().nonnegative().optional().describe("Rough annual income (年収) in yen."),
+      nonTaxable: z.boolean().optional().describe("Resident-tax exempt household (住民税非課税)."),
+      burdenRate: z.number().optional().describe("Copay rate 0.1 / 0.2 / 0.3 (default by age and band)."),
+      setting: z.enum(["inpatient", "outpatient"]).optional().describe("inpatient / household total (default) or outpatient (70+ outpatient-only cap)."),
+      manyTimes: z.boolean().optional().describe("Already had a benefit in 3+ of the last 12 months (多数回)."),
+      priorHitMonths: z.number().int().min(0).max(11).optional().describe("Benefit months in the 12 months before."),
+      months: z.union([z.array(z.object({ month: z.string(), totalCost: z.number().nonnegative().optional(), copay: z.number().nonnegative().optional(), setting: z.enum(["inpatient", "outpatient"]).optional() })).max(36), z.string()]).optional().describe("Yearly tracker: [{month, totalCost|copay, setting}] or '2026-08:300000,2026-09:300000'."),
+    }),
+    example: { month: "2026-11", totalCost: 1000000, standardMonthlyRemuneration: 300000 },
   },
 ];
 

@@ -205,10 +205,7 @@ test("japan_disaster_prep_check on the disaster site", async () => {
   assert.equal(t.inputSchema.safeParse({ permitDate: "1981/06/01" }).success, false);
 });
 
-test("38 tools, v1.22.0, japan_lost_item_check on the lost site", async () => {
-  assert.equal(TOOLS.length, 38);
-  const { readFileSync } = await import("node:fs");
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.22.0", f);
+test("japan_lost_item_check on the lost site", async () => {
   const t = TOOLS.find((x) => x.name === "japan_lost_item_check");
   assert.ok(t);
   assert.equal(SITES[t.site].url, "https://japan-lost-item.vercel.app");
@@ -219,4 +216,22 @@ test("38 tools, v1.22.0, japan_lost_item_check on the lost site", async () => {
   assert.equal(t.inputSchema.safeParse({ place: "moon" }).success, false);
   assert.equal(t.inputSchema.safeParse({ lostDate: "01/11/2026" }).success, false);
   assert.equal(t.inputSchema.safeParse({ valueJPY: -1 }).success, false);
+});
+
+test("39 tools, v1.23.0, japan_high_cost_medical_check on the medical site", async () => {
+  assert.equal(TOOLS.length, 39);
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.23.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_high_cost_medical_check");
+  assert.ok(t);
+  assert.equal(SITES[t.site].url, "https://japan-medical-cost-cap.vercel.app");
+  assert.equal(t.path, "/api/check");
+  assert.equal(t.inputSchema.safeParse(t.example).success, true);
+  assert.equal(t.inputSchema.safeParse({}).success, true);
+  assert.equal(t.inputSchema.safeParse({ ageGroup: "70plus", band: "y200", copay: 30000, setting: "outpatient" }).success, true);
+  assert.equal(t.inputSchema.safeParse({ band: "y370", months: [{ month: "2026-08", totalCost: 300000 }] }).success, true);
+  assert.equal(t.inputSchema.safeParse({ band: "y370", months: "2026-08:300000,2026-09:300000" }).success, true);
+  assert.equal(t.inputSchema.safeParse({ band: "zz" }).success, false);
+  assert.equal(t.inputSchema.safeParse({ month: "Nov 2026" }).success, false);
+  assert.equal(t.inputSchema.safeParse({ totalCost: -1 }).success, false);
 });

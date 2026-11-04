@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-03T12:46+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-04T12:41+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -17,6 +17,7 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 | [Japan Leaving Tax Check](https://japan-leaving-tax.vercel.app) | 2026-11-01 | – | [japan-leaving-tax/api/rules](https://japan-leaving-tax.vercel.app/api/rules) | 0 |
 | [Japan Lost Item Check](https://japan-lost-item.vercel.app) | 2026-11-03 | – | [japan-lost-item/api/rules](https://japan-lost-item.vercel.app/api/rules) | 12 |
 | [Japan Luggage Check](https://japan-luggage.vercel.app) | 2026-10-12 | – | [japan-luggage/api/rules](https://japan-luggage.vercel.app/api/rules) | 8 |
+| [Japan High-Cost Medical Expense Check](https://japan-medical-cost-cap.vercel.app) | 2026-11-04 | – | [japan-medical-cost-cap/api/rules](https://japan-medical-cost-cap.vercel.app/api/rules) | 8 |
 | [Japan My Number Card Check](https://japan-mynumber-card-check.vercel.app) | 2026-10-29 | – | [japan-mynumber-card-check/api/rules](https://japan-mynumber-card-check.vercel.app/api/rules) | 9 |
 | [Japan Overseas Dependents Check](https://japan-overseas-dependents.vercel.app) | 2026-10-25 | – | [japan-overseas-dependents/api/rules](https://japan-overseas-dependents.vercel.app/api/rules) | 7 |
 | [Japan Part-time Work Check](https://japan-parttime-check.vercel.app) | 2026-10-26 | 2026-10-01 | [japan-parttime-check/api/rules](https://japan-parttime-check.vercel.app/api/rules) | 9 |
@@ -174,6 +175,16 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 - https://www.westjr.co.jp/travel-information/en/train-usage-guide/luggage/
 - https://www.jrkyushu.co.jp/english/guide/oversized_baggage.html
 - https://www.jreast.co.jp/en/multi/luggage-area/
+
+### Japan High-Cost Medical Expense Check
+- https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html
+- https://www.mhlw.go.jp/content/12400000/001726232.pdf
+- https://www.mhlw.go.jp/content/12400000/001729632.pdf
+- https://www.kyoukaikenpo.or.jp/g3/sb3030/r150/
+- https://www.city.setagaya.lg.jp/02060/33049.html
+- https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html
+- https://www.city.fukuoka.lg.jp/hofuku/hokennenkin/hp/kokuminkenkouhoken/09-00.html
+- https://laws.e-gov.go.jp/law/315IO0000000243
 
 ### Japan My Number Card Check
 - https://laws.e-gov.go.jp/law/426M60000008085

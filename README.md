@@ -2,7 +2,7 @@
 
 <!-- mcp-name: io.github.sean0007/free-agent-tools -->
 
-A free, no-auth **remote MCP server** (streamable HTTP) with 38 small, deterministic tools your AI agent can call:
+A free, no-auth **remote MCP server** (streamable HTTP) with 39 small, deterministic tools your AI agent can call:
 startup pitch roasting, business idea scoring, price headroom, hotel OTA commission, open-source swaps for SaaS bills,
 Google Ads / Meta Ads notice risk, App Store 4.2 / 4.3 precheck, faceless YouTube reality check,
 AI infrastructure bottlenecks, viral attention patterns, Japan trip planning, Japan tax-free refund checking, Japan visa / residence permit fees, Japan luggage rules / forwarding cost, the Kyushu travel discount (九州ふっこう応援割), the Japan customs duty-free allowance on arrival, Japan pre-entry TB screening (JPETS), Japan dual pricing (resident vs non-resident prices), a Japan emergency alert decoder (緊急地震速報, tsunami, the level-named warnings since 2026-05-29, 避難指示, J-ALERT), a Japan permanent residence (永住) guideline check for the 2026-10-01 revision, a Japan international postage calculator (Japan Post prices now vs from 2027-02-01), a Japan re-entry deadline check (みなし再入国 / re-entry permit / pending renewal), and a Japan overseas dependents check (国外居住親族: age bands, ¥380,000 remittance rule, 2026 income limit), a Japan part-time work check (資格外活動許可: which statuses may take which jobs, 28-hour rule with rolling 7-day windows, the 2026-10-01 pachinko change for dependents), a Japan driving check (Geneva IDP vs translation vs no route by country, 1-year and 3-month rules, 外免切替 after 2025-10-01), an Airbnb house rules check (likely-not-allowed rules and checkout tasks for bookings from 2026-11-20, rewrites, Japan 民泊 guest-register exceptions), a Japan My Number Card expiry check (foreign residents' card ends with the period of stay: city-hall deadline, 2-month extension while a renewal is pending, 10th-birthday cap; e-certificate and マイナ保険証 grace), a Japan Highly Skilled Professional points calculator (高度人材ポイント: 70 vs 80 for the PR fast track, ¥3M floor, no-double-count rules, J-Skip), and a Japan pet quarantine check (dogs, cats, rabbits: 180-day wait, 40-day notice, detention days, the 2027-01-01 mandatory 14-day export application), and a Japan leaving-tax check (resident tax still owed under the January 1 rule, tax agent / 納税管理人, final-salary lump sum, 準確定申告 and 転出届 deadlines), and a Japan disaster prep check (the 防災庁 2026-11-02 emergency request as a household checklist: water, food and portable-toilet stockpile, 旧耐震 check, 5-point to-do).
@@ -91,6 +91,7 @@ claude mcp add --transport http free-agent-tools https://free-agent-tools.vercel
 | `japan_leaving_tax_check` | Leaving Japan: which 住民税 fiscal years are still owed (January 1 assessment date; leave by December 31 to skip next year), tax agent (納税管理人) needed?, final-salary lump sum (mandatory for jobs ending Jan 1 – Apr 30), year-end adjustment / 準確定申告 deadline, previous-year return, exit-tax flag, 転出届 window, pension lump-sum claim deadline. No yen amounts |
 | `japan_disaster_prep_check` | Japan's 防災庁 emergency request (事前防災徹底のための緊急要請, 2026-11-02) as a household checklist: drinking water 3 L, 3 meals and 5 portable-toilet uses per person per day for 3 days or a week, gap against what you have, pets 5–7+ days, old quake standard (旧耐震, 建築確認 before 1981-06-01) and pre-2000 wooden-house check, status of the 5 points |
 | `japan_lost_item_check` | Lost something in Japan (wallet, phone, passport, residence card, bag, umbrella; train, subway, Shinkansen, taxi, airport, shop, street): steps in order, operator lost-and-found contact, police search by prefecture, 遺失物法 periods (3-month hold, 2-week umbrellas / clothing, facility hand-over 1 / 2 weeks, ¥100,000 high-value line), 5–20% reward, residence card 14-day reissue deadline |
+| `japan_high_cost_medical_check` | Japan 高額療養費: monthly cap for your age and income band, what you really pay, refund, 4th-month 多数回 rate, the new Aug–Jul yearly cap (from Aug 2026), the same bill under the Aug 2027 12-band schedule, 2-year claim deadline; optional months tracker |
 
 All tools are read-only and idempotent.
 
@@ -131,6 +132,7 @@ Every tool is also a free JSON API (GET or POST, CORS open, OpenAPI 3.1, `/.well
 | [Japan Leaving Tax Check](https://japan-leaving-tax.vercel.app) | https://japan-leaving-tax.vercel.app/openapi.json |
 | [Japan Disaster Prep Check](https://japan-disaster-prep.vercel.app) | https://japan-disaster-prep.vercel.app/openapi.json |
 | [Japan Lost Item Check](https://japan-lost-item.vercel.app) | https://japan-lost-item.vercel.app/openapi.json |
+| [Japan High-Cost Medical Expense Check](https://japan-medical-cost-cap.vercel.app) | https://japan-medical-cost-cap.vercel.app/openapi.json |
 
 ## Japan rules index (machine-readable)
 
