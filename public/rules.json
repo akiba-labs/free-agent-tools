@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-04T12:41+09:00",
+ "generatedAt": "2026-11-04T12:44+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -13215,7 +13215,7 @@
     "https://www.city.setagaya.lg.jp/02060/33049.html",
     "https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html",
     "https://www.city.fukuoka.lg.jp/hofuku/hokennenkin/hp/kokuminkenkouhoken/09-00.html",
-    "https://laws.e-gov.go.jp/law/315IO0000000243"
+    "https://laws.e-gov.go.jp/law/215IO0000000243"
    ],
    "rules": {
     "formula": "monthly cap = base + max(0, 10割 total medical cost − threshold) × 1%, rounded to the yen; flat caps for lower bands",
@@ -13954,7 +13954,7 @@
      "https://www.city.setagaya.lg.jp/02060/33049.html",
      "https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html",
      "https://www.city.fukuoka.lg.jp/hofuku/hokennenkin/hp/kokuminkenkouhoken/09-00.html",
-     "https://laws.e-gov.go.jp/law/315IO0000000243"
+     "https://laws.e-gov.go.jp/law/215IO0000000243"
     ],
     "disclaimer": "Educational estimate, not medical, financial or legal advice. Not affiliated with the Ministry of Health, Labour and Welfare (MHLW), Japan Health Insurance Association (協会けんぽ), any health insurance society, city NHI office or hospital. Your insurer decides the actual benefit; extra benefits (付加給付) and local subsidies can lower your cost further. Rules as of 2026-11-04.",
     "docs": "https://japan-medical-cost-cap.vercel.app/openapi.json",
