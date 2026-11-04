@@ -1,4 +1,5 @@
 import { MCP_URL, SERVER_URL, SITES, TOOLS } from "@/lib/tools";
+import { WHEN_TO_USE } from "@/lib/agent-md";
 
 export const dynamic = "force-static";
 
@@ -10,6 +11,9 @@ export function GET() {
 MCP endpoint: ${MCP_URL}
 Landing page with client setup: ${SERVER_URL}
 Cost: free. No key, no signup.
+
+## When to use this
+${WHEN_TO_USE}
 
 ## Tools
 ${TOOLS.map((t) => `- ${t.name}: ${t.description}`).join("\n")}
