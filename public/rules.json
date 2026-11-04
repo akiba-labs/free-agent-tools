@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-04T12:44+09:00",
+ "generatedAt": "2026-11-04T12:49+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -13209,8 +13209,8 @@
    "effective": null,
    "officialSources": [
     "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
-    "https://www.mhlw.go.jp/content/12400000/001726232.pdf",
-    "https://www.mhlw.go.jp/content/12400000/001729632.pdf",
+    "https://www.mhlw.go.jp/content/001726232.pdf",
+    "https://www.mhlw.go.jp/content/001729632.pdf",
     "https://www.kyoukaikenpo.or.jp/g3/sb3030/r150/",
     "https://www.city.setagaya.lg.jp/02060/33049.html",
     "https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html",
@@ -13948,8 +13948,8 @@
     "rulesAsOf": "2026-11-04",
     "sources": [
      "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
-     "https://www.mhlw.go.jp/content/12400000/001726232.pdf",
-     "https://www.mhlw.go.jp/content/12400000/001729632.pdf",
+     "https://www.mhlw.go.jp/content/001726232.pdf",
+     "https://www.mhlw.go.jp/content/001729632.pdf",
      "https://www.kyoukaikenpo.or.jp/g3/sb3030/r150/",
      "https://www.city.setagaya.lg.jp/02060/33049.html",
      "https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html",

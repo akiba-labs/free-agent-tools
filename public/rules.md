@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-04T12:44+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-04T12:49+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -178,8 +178,8 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 
 ### Japan High-Cost Medical Expense Check
 - https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html
-- https://www.mhlw.go.jp/content/12400000/001726232.pdf
-- https://www.mhlw.go.jp/content/12400000/001729632.pdf
+- https://www.mhlw.go.jp/content/001726232.pdf
+- https://www.mhlw.go.jp/content/001729632.pdf
 - https://www.kyoukaikenpo.or.jp/g3/sb3030/r150/
 - https://www.city.setagaya.lg.jp/02060/33049.html
 - https://www.city.machida.tokyo.jp/kurashi/hoken/kokuho/ironnakyuufu/kougaku.html
