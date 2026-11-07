@@ -133,6 +133,7 @@ Every tool is also a free JSON API (GET or POST, CORS open, OpenAPI 3.1, `/.well
 | [Japan Disaster Prep Check](https://japan-disaster-prep.vercel.app) | https://japan-disaster-prep.vercel.app/openapi.json |
 | [Japan Lost Item Check](https://japan-lost-item.vercel.app) | https://japan-lost-item.vercel.app/openapi.json |
 | [Japan High-Cost Medical Expense Check](https://japan-medical-cost-cap.vercel.app) | https://japan-medical-cost-cap.vercel.app/openapi.json |
+- [Japan Job Loss Check](https://japan-job-loss.vercel.app)
 
 ## Japan rules index (machine-readable)
 

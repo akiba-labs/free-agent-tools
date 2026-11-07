@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-04T12:49+09:00",
+ "generatedAt": "2026-11-07T12:38+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -13962,6 +13962,71 @@
    }
   },
   {
+   "id": "japan-job-loss",
+   "name": "Japan Job Loss Check",
+   "site": "https://japan-job-loss.vercel.app",
+   "rulesEndpoint": "https://japan-job-loss.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-job-loss.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-07",
+   "effective": null,
+   "officialSources": [
+    "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00014.html",
+    "https://www.moj.go.jp/isa/applications/procedures/shozokunikansuru_00001.html",
+    "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00011.html",
+    "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000139508.html",
+    "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000160564_00045.html",
+    "https://www.mhlw.go.jp/content/11601000/001293213.pdf",
+    "https://www.hellowork.mhlw.go.jp/help/question08.html",
+    "https://laws.e-gov.go.jp/law/349AC0000000116",
+    "https://www.kyoukaikenpo.or.jp/g3/cat320/sb3160/sbb3165/",
+    "https://www.nenkin.go.jp/"
+   ],
+   "rules": {
+    "rulesAsOf": "2026-11-07",
+    "immigration": {
+     "notification": "Mid- to long-term residents whose status of residence is tied to an organisation (Engineer/Specialist in Humanities/International Services, Skilled Labour, Instructor, Professor, Specified Skilled Worker, Technical Intern / 育成就労, Business Manager, Highly Skilled Professional, etc.) must notify ISA of leaving that organisation within 14 days (所属機関に関する届出). Online, at a regional immigration office, or by post.",
+     "studentDependent": "Student and Dependent statuses are not normally required to file the organisation-leaving notification for a part-time employer, but a change of school / sponsor still needs its own notice. Confirm with ISA.",
+     "pr": "Permanent residents and Special Permanent Residents do not file the work-organisation leaving notice. Other tax / insurance steps still apply.",
+     "threeMonth": "ISA may revoke a work status if the holder stops the activity for a continuous period of about three months without a valid reason (Immigration Control Act art. 22-4). Actively looking for a new job and keeping records helps; this is discretionary, not automatic."
+    },
+    "unemployment": {
+     "eligibilityCompany": "Laid off / company-initiated (会社都合・特定受給資格者等): generally need 6 or more insured months in the 1 year before leaving.",
+     "eligibilitySelf": "Quit yourself (自己都合): generally need 12 or more insured months in the 2 years before leaving, and you must be able and willing to work and be looking for work.",
+     "waiting": "Everyone has a 7-day waiting period (待期) after the Hello Work application / qualification decision before benefits can start.",
+     "restriction": "Self-quit on or after 2025-04-01: principle 1-month benefit restriction after the waiting period (was 3 months). Two or more self-quits with benefit decisions in 5 years can still mean 3 months. Company-initiated and many 'specific reason' cases have no restriction. Education/training can lift the restriction (MHLW).",
+     "apply": "Take the 離職票 (separation notice) to Hello Work (ハローワーク). Foreign nationals need a status that allows work and must be job-seeking in Japan."
+    },
+    "health": {
+     "window": "After leaving employment-based health insurance you usually choose within about 14–20 days: (1) voluntary continued coverage (任意継続) at 協会けんぽ / your kenpo — apply within 20 days of losing eligibility; (2) National Health Insurance (国民健康保険) at the city office — typically within 14 days; (3) join a family member's dependent coverage if you qualify; (4) start a new employer's plan from day one of the new job."
+    },
+    "pension": {
+     "window": "Leaving Employees' Pension (厚生年金): if you stay in Japan under 60 and are not covered by a new employer, enrol in National Pension (国民年金) — cities commonly ask within 14 days. Confirm at the city office / pension office."
+    },
+    "notCovered": [
+     "Exact yen amounts of basic allowance, 再就職手当 or premiums",
+     "Whether Hello Work will classify your 離職理由 as 会社都合 / 特定理由 / 自己都合",
+     "Whether ISA will actually revoke status under the 3-month rule",
+     "Tax year-end adjustment, 住民税 on the final salary (see Japan Leaving Tax Check)",
+     "Returning home permanently (see Japan Leaving Tax Check + pension lump-sum guides)"
+    ],
+    "sources": [
+     "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00014.html",
+     "https://www.moj.go.jp/isa/applications/procedures/shozokunikansuru_00001.html",
+     "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00011.html",
+     "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000139508.html",
+     "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000160564_00045.html",
+     "https://www.mhlw.go.jp/content/11601000/001293213.pdf",
+     "https://www.hellowork.mhlw.go.jp/help/question08.html",
+     "https://laws.e-gov.go.jp/law/349AC0000000116",
+     "https://www.kyoukaikenpo.or.jp/g3/cat320/sb3160/sbb3165/",
+     "https://www.nenkin.go.jp/"
+    ],
+    "disclaimer": "Educational checklist of dates and next steps, not immigration, labour, tax or benefits advice. Not affiliated with the Immigration Services Agency, the Ministry of Health, Labour and Welfare, Hello Work, the Japan Pension Service, 協会けんぽ or any city office. Hello Work and ISA decide eligibility; confirm with them (or a licensed 社労士 / 行政書士) before you act. Yen amounts are not calculated.",
+    "docs": "https://japan-job-loss.vercel.app/openapi.json",
+    "checker": "https://japan-job-loss.vercel.app/api/check"
+   }
+  },
+  {
    "id": "japan-mynumber-card-check",
    "name": "Japan My Number Card Check",
    "site": "https://japan-mynumber-card-check.vercel.app",
@@ -16118,7 +16183,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-11-04",
+    "today": "2026-11-07",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

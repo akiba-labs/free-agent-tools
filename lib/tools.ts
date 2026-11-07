@@ -37,6 +37,7 @@ export const SITES: Record<string, SiteInfo> = {
   disaster: { id: "disaster", name: "Japan Disaster Prep Check", url: "https://japan-disaster-prep.vercel.app", blurb: "Japan's 防災庁 emergency request (事前防災徹底のための緊急要請, 2026-11-02) as a household checklist: water (3 L per person per day), meals and portable-toilet uses (5 a day) for 3 days or a week, the gap against what you have, old quake standard (旧耐震, before 1981-06-01) check and the 5-point to-do list." },
   lost: { id: "lost", name: "Japan Lost Item Check", url: "https://japan-lost-item.vercel.app", blurb: "Lost something in Japan (wallet, phone, passport, residence card, bag, umbrella) on a train, subway, Shinkansen, bus, taxi, at an airport, shop or on the street: steps in order, the operator's lost-and-found contact, the police found-items search by prefecture, how long found items are kept under 遺失物法 (3 months; umbrellas and clothing 2 weeks), facility hand-over periods, the 5–20% finder's reward and the residence card 14-day reissue deadline. Rules as of 2026-11-03." },
   medical: { id: "medical", name: "Japan High-Cost Medical Expense Check", url: "https://japan-medical-cost-cap.vercel.app", blurb: "Japan 高額療養費 (high-cost medical expense benefit): the monthly cap (自己負担限度額) for your age and income band, what you really pay, the refund, the 4th-month 多数回 rate, the new Aug–Jul yearly cap (年間上限) for treatment from Aug 2026, the same bill under the Aug 2027 12-band schedule and the 2-year claim deadline. Rules as of 2026-11-04 (MHLW review tables, 協会けんぽ, city NHI pages)." },
+  jobloss: { id: "jobloss", name: "Japan Job Loss Check", url: "https://japan-job-loss.vercel.app", blurb: "Quit or lost a job in Japan: ISA 所属機関に関する届出 within 14 days, the ~3-month inactivity review risk, Hello Work / 雇用保険 eligibility and waiting rules (self-quit restriction 1 month from 2025-04-01), health insurance (任意継続 vs 国保), National Pension switch and documents. Rules as of 2026-11-07." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -799,6 +800,28 @@ export const TOOLS: ToolDef[] = [
       months: z.union([z.array(z.object({ month: z.string(), totalCost: z.number().nonnegative().optional(), copay: z.number().nonnegative().optional(), setting: z.enum(["inpatient", "outpatient"]).optional() })).max(36), z.string()]).optional().describe("Yearly tracker: [{month, totalCost|copay, setting}] or '2026-08:300000,2026-09:300000'."),
     }),
     example: { month: "2026-11", totalCost: 1000000, standardMonthlyRemuneration: 300000 },
+  },
+  {
+    name: "japan_job_loss_check",
+    title: "Quit or lost a job in Japan: ISA 14-day notice, Hello Work eligibility, health and pension switches",
+    description:
+      "Applies Japan's post-employment checklist as of 2026-11-07 (ISA 所属機関に関する届出 pages, MHLW / Hello Work employment-insurance Q&A including the April 2025 給付制限 change, 協会けんぽ 任意継続, usual 14-day city / National Pension windows). jobEndDate required. status: work | student | dependent | pr_spr | designated | other (aliases 技人国, 特定技能, 留学, 家族滞在, 永住…). reason: company | self | contract_end | other (会社都合 / 自己都合 / 契約満了). insuredMonths tightens eligibility (company ≥6 in 1 year, self ≥12 in 2 years). lookingForWork, hasNewJob, newJobStartDate, healthPlan (undecided | voluntary_continue | national | family | new_employer), under60, today. Returns verdict (act_now | plan_ahead | eligible_benefits | limited), summary, immigration {notificationNeeded, notifyBy, threeMonthRisk, threeMonthDate, note}, unemployment {likelyEligible, why, waitingDays, restrictionMonths, earliestBenefitDay, applyAt, note}, health, pension, documents, deadlines, actions, warnings, sources, disclaimer. No yen amounts. Use for 'I quit my job in Japan what do I do', '所属機関に関する届出 期限', '雇用保険 自己都合 給付制限', '任意継続 国保 どっち', 'ハローワーク 外国人 離職票'. Educational, not immigration / labour / benefits advice; not affiliated with ISA, MHLW, Hello Work, the Japan Pension Service, 協会けんぽ or any city office.",
+    site: "jobloss",
+    path: "/api/check",
+    inputSchema: z.object({
+      jobEndDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("Last day of employment, YYYY-MM-DD."),
+      status: z.enum(["work", "student", "dependent", "pr_spr", "designated", "other"]).optional().describe("Status of residence (default work)."),
+      reason: z.enum(["company", "self", "contract_end", "other"]).optional().describe("Why the job ended (default self)."),
+      insuredMonths: z.number().min(0).max(600).optional().describe("Employment-insurance insured months in the look-back window."),
+      age: z.number().min(15).max(75).optional().describe("Age 15–75."),
+      lookingForWork: z.boolean().optional().describe("Able and willing to work / job seeking (default true)."),
+      hasNewJob: z.boolean().optional().describe("Already have a next employer."),
+      newJobStartDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("New job start date, YYYY-MM-DD."),
+      healthPlan: z.enum(["undecided", "voluntary_continue", "national", "family", "new_employer"]).optional().describe("Health coverage plan."),
+      under60: z.boolean().optional().describe("Override National Pension switch need."),
+      today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
+    }),
+    example: { jobEndDate: "2026-10-31", status: "work", reason: "self", insuredMonths: 18, today: "2026-11-07" },
   },
 ];
 

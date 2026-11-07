@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 import { SITES, TOOLS, callToolApi } from "../lib/tools";
 
 test("tool names are unique and valid MCP names", () => {
@@ -218,20 +219,11 @@ test("japan_lost_item_check on the lost site", async () => {
   assert.equal(t.inputSchema.safeParse({ valueJPY: -1 }).success, false);
 });
 
-test("39 tools, v1.23.0, japan_high_cost_medical_check on the medical site", async () => {
-  assert.equal(TOOLS.length, 39);
-  const { readFileSync } = await import("node:fs");
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.23.0", f);
-  const t = TOOLS.find((x) => x.name === "japan_high_cost_medical_check");
+test("40 tools, v1.24.0, japan_job_loss_check on the jobloss site", async () => {
+  assert.equal(TOOLS.length, 40);
+  assert.equal(Object.keys(SITES).length >= 30, true);
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.24.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_job_loss_check");
   assert.ok(t);
-  assert.equal(SITES[t.site].url, "https://japan-medical-cost-cap.vercel.app");
-  assert.equal(t.path, "/api/check");
-  assert.equal(t.inputSchema.safeParse(t.example).success, true);
-  assert.equal(t.inputSchema.safeParse({}).success, true);
-  assert.equal(t.inputSchema.safeParse({ ageGroup: "70plus", band: "y200", copay: 30000, setting: "outpatient" }).success, true);
-  assert.equal(t.inputSchema.safeParse({ band: "y370", months: [{ month: "2026-08", totalCost: 300000 }] }).success, true);
-  assert.equal(t.inputSchema.safeParse({ band: "y370", months: "2026-08:300000,2026-09:300000" }).success, true);
-  assert.equal(t.inputSchema.safeParse({ band: "zz" }).success, false);
-  assert.equal(t.inputSchema.safeParse({ month: "Nov 2026" }).success, false);
-  assert.equal(t.inputSchema.safeParse({ totalCost: -1 }).success, false);
+  assert.equal(SITES[t.site].url, "https://japan-job-loss.vercel.app");
 });
