@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-07T12:38+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-08T12:43+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -28,6 +28,7 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 | [Japan Tax-Free Refund Checker](https://japan-tax-free-refund.vercel.app) | 2026-10-09 | – | [japan-tax-free-refund/api/rules](https://japan-tax-free-refund.vercel.app/api/rules) | 8 |
 | [Japan TB Screening Check (JPETS)](https://japan-tb-screening.vercel.app) | 2026-10-15 | – | [japan-tb-screening/api/rules](https://japan-tb-screening.vercel.app/api/rules) | 40 |
 | [Japan Visa Fee Calculator](https://japan-visa-fee.vercel.app) | 2026-10-11 | 2026-10-01 | [japan-visa-fee/api/rules](https://japan-visa-fee.vercel.app/api/rules) | 5 |
+| [Japan Visa Renewal Window Check](https://japan-visa-renewal.vercel.app) | 2026-11-08 | – | [japan-visa-renewal/api/rules](https://japan-visa-renewal.vercel.app/api/rules) | 7 |
 | [Kyushu Travel Discount Calculator](https://kyushu-travel-discount.vercel.app) | 2026-10-13 | – | [kyushu-travel-discount/api/rules](https://kyushu-travel-discount.vercel.app/api/rules) | 12 |
 
 ## Official sources by tool
@@ -313,6 +314,15 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 - https://www.moj.go.jp/isa/11_00107.html
 - https://www.moj.go.jp/isa/01_00646.html
 - https://www.moj.go.jp/isa/applications/faq/01_00650.html
+
+### Japan Visa Renewal Window Check
+- https://www.moj.go.jp/isa/applications/procedures/16-3.html
+- https://www.moj.go.jp/isa/applications/procedures/tokureikikan_00001.html
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00011.html
+- https://www.moj.go.jp/isa/tokutei.html
+- https://www.moj.go.jp/isa/applications/procedures/whatzairyu_00001.html
+- https://www.moj.go.jp/isa/01_00644.html
+- https://laws.e-gov.go.jp/law/326CO0000000319
 
 ### Kyushu Travel Discount Calculator
 - https://fukuoka-fukkou-wari.jp/

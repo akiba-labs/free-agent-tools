@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-07T12:38+09:00",
+ "generatedAt": "2026-11-08T12:43+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -14871,7 +14871,7 @@
      {
       "regime": "refund",
       "appliesTo": "Purchases on or after 2026-11-01",
-      "howItWorks": "Pay the tax-inclusive price at a tax-free shop and register a refund method. On departure, scan your passport at a tax-free kiosk (or Visit Japan Web at major airports) BEFORE checking bags. Green = done; Red = customs inspection. After customs confirms, the shop or its refund operator pays back the consumption tax.",
+      "howItWorks": "Pay the tax-inclusive price at a tax-free shop and register a refund method. On departure, scan your passport at a tax-free kiosk (or Visit Japan Web at major airports, Temporary Visitor / Diplomat / Official status only) BEFORE checking bags. Green = done; Red = customs inspection. After customs confirms, the shop or its refund operator pays back the consumption tax.",
       "minimumPerStorePerDay": "¥5,000 before tax (same purchaser, same store, same day)",
       "categories": "No general/consumable split, no ¥500,000 cap, no sealed bags. Quantities limited to what you can carry out yourself. Consumables used in Japan are not refundable.",
       "atDeparture": "Final departure airport/seaport, international departure lobby, before baggage check-in.",
@@ -14901,7 +14901,7 @@
      "Each store's purchases are added up per day: you need ¥5,000+ before tax at one store on one day.",
      "Register your refund method (card, app, etc.) at the shop when you buy; ask how and when they pay.",
      "Depart Japan within 90 days of the purchase date (counted from the day after purchase).",
-     "Do the tax-free kiosk (or Visit Japan Web at Narita, Haneda, Kansai, Chubu, New Chitose, Fukuoka, Naha) at your FINAL departure airport or seaport, BEFORE checking bags. Checked bags cannot be retrieved for this.",
+     "Do the tax-free kiosk (or Visit Japan Web at Narita, Haneda, Kansai, Chubu, New Chitose, Fukuoka, Naha; Visit Japan Web only for Temporary Visitor, Diplomat or Official status, never Japanese nationals) at your FINAL departure airport or seaport, BEFORE checking bags. Checked bags cannot be retrieved for this.",
      "Carry every item from each receipt. If one item from a receipt is missing, nothing on that receipt is refunded.",
      "Take all tax-free goods, general goods and consumables alike, out of Japan unused. Food, drinks, and cosmetics used in Japan are not refundable; if you used some, skip the kiosk and tell the customs counter.",
      "Green result: done. Red result: take the goods to the customs inspection area before boarding. Leave plenty of time; missing your flight is not compensated.",
@@ -15812,6 +15812,56 @@
    }
   },
   {
+   "id": "japan-visa-renewal",
+   "name": "Japan Visa Renewal Window Check",
+   "site": "https://japan-visa-renewal.vercel.app",
+   "rulesEndpoint": "https://japan-visa-renewal.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-visa-renewal.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-08",
+   "effective": null,
+   "officialSources": [
+    "https://www.moj.go.jp/isa/applications/procedures/16-3.html",
+    "https://www.moj.go.jp/isa/applications/procedures/tokureikikan_00001.html",
+    "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00011.html",
+    "https://www.moj.go.jp/isa/tokutei.html",
+    "https://www.moj.go.jp/isa/applications/procedures/whatzairyu_00001.html",
+    "https://www.moj.go.jp/isa/01_00644.html",
+    "https://laws.e-gov.go.jp/law/326CO0000000319"
+   ],
+   "rules": {
+    "periodRenewal": {
+     "nameEn": "Extension of period of stay",
+     "nameJa": "在留期間更新許可申請",
+     "window": "Up to the expiry date. If your current period of stay is 6 months or longer, from 3 months before expiry (ISA 16-3). Earlier only for genuinely unavoidable reasons, by prior consultation.",
+     "processing": "Standard processing 2 weeks to 1 month (ISA 16-3).",
+     "specialPeriod": "If you apply by the expiry date and no decision is made by then, you may stay and continue the same activity until the decision or the end of the day 2 months after expiry, whichever comes first (Immigration Control Act art. 20(6) / 21(4)).",
+     "fees": "Fee by period GRANTED (applications received on or after 2026-10-01): counter ¥10,000–¥75,000 in revenue stamps; online ¥10,000–¥65,000 plus a ¥330/¥550 payment processing fee. Received by 2026-09-30: old ¥6,000."
+    },
+    "cardRenewal": {
+     "nameEn": "Renewal of residence card validity",
+     "nameJa": "在留カードの有効期間の更新申請",
+     "who": "Permanent residents aged 16+ and Highly Skilled Professional (ii) holders; also anyone whose card issued on or before 2026-06-13 expires on their 16th birthday or the day before.",
+     "window": "From 3 months before the card's expiry date to the expiry date (16th-birthday cards: from 6 months before). Earlier if you will be abroad for a long time.",
+     "fee": "Free. Usually issued the same day.",
+     "newFormat": "Cards issued on or after 2026-06-14 for permanent residents / HSP (ii) are valid until the 10th birthday after issue (5th birthday if under 18). Older cards: 7 years after issue (under 16: until the day before the 16th birthday)."
+    },
+    "specialCard": "特定在留カード (residence card + My Number card) since 2026-06-14: optional, counter applications only (not with online filing), takes about 10 days longer than a normal card. Its My Number validity ends on your original period expiry, so if your application is still pending, change that validity at the city office before the original expiry.",
+    "rulesAsOf": "2026-11-08",
+    "sources": [
+     "https://www.moj.go.jp/isa/applications/procedures/16-3.html",
+     "https://www.moj.go.jp/isa/applications/procedures/tokureikikan_00001.html",
+     "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri10_00011.html",
+     "https://www.moj.go.jp/isa/tokutei.html",
+     "https://www.moj.go.jp/isa/applications/procedures/whatzairyu_00001.html",
+     "https://www.moj.go.jp/isa/01_00644.html",
+     "https://laws.e-gov.go.jp/law/326CO0000000319"
+    ],
+    "disclaimer": "Educational date calculator, not immigration or legal advice. Not affiliated with the Immigration Services Agency of Japan (ISA) or the Ministry of Justice. It applies ISA's published application windows, special-period rule, card-validity rules and 2026-10-01 fee table to the dates you enter; it cannot see your real permit, card or any decision. ISA decides; leave a margin and confirm with your regional immigration bureau, ISA's information centre (0570-013904) or a licensed gyoseishoshi / lawyer.",
+    "docs": "https://japan-visa-renewal.vercel.app/openapi.json",
+    "checker": "https://japan-visa-renewal.vercel.app/api/check"
+   }
+  },
+  {
    "id": "kyushu-travel-discount",
    "name": "Kyushu Travel Discount Calculator",
    "site": "https://kyushu-travel-discount.vercel.app",
@@ -16183,7 +16233,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-11-07",
+    "today": "2026-11-08",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

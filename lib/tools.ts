@@ -38,6 +38,7 @@ export const SITES: Record<string, SiteInfo> = {
   lost: { id: "lost", name: "Japan Lost Item Check", url: "https://japan-lost-item.vercel.app", blurb: "Lost something in Japan (wallet, phone, passport, residence card, bag, umbrella) on a train, subway, Shinkansen, bus, taxi, at an airport, shop or on the street: steps in order, the operator's lost-and-found contact, the police found-items search by prefecture, how long found items are kept under 遺失物法 (3 months; umbrellas and clothing 2 weeks), facility hand-over periods, the 5–20% finder's reward and the residence card 14-day reissue deadline. Rules as of 2026-11-03." },
   medical: { id: "medical", name: "Japan High-Cost Medical Expense Check", url: "https://japan-medical-cost-cap.vercel.app", blurb: "Japan 高額療養費 (high-cost medical expense benefit): the monthly cap (自己負担限度額) for your age and income band, what you really pay, the refund, the 4th-month 多数回 rate, the new Aug–Jul yearly cap (年間上限) for treatment from Aug 2026, the same bill under the Aug 2027 12-band schedule and the 2-year claim deadline. Rules as of 2026-11-04 (MHLW review tables, 協会けんぽ, city NHI pages)." },
   jobloss: { id: "jobloss", name: "Japan Job Loss Check", url: "https://japan-job-loss.vercel.app", blurb: "Quit or lost a job in Japan: ISA 所属機関に関する届出 within 14 days, the ~3-month inactivity review risk, Hello Work / 雇用保険 eligibility and waiting rules (self-quit restriction 1 month from 2025-04-01), health insurance (任意継続 vs 国保), National Pension switch and documents. Rules as of 2026-11-07." },
+  renewal: { id: "renewal", name: "Japan Visa Renewal Window Check", url: "https://japan-visa-renewal.vercel.app", blurb: "When to renew a visa (period of stay) or residence card in Japan: the window opens 3 months before expiry for periods of 6 months+, last day = expiry, the 2-month special period (特例期間) while ISA decides, the 2026-10-01 fee for the period granted, and permanent-resident / HSP (ii) card renewal under the 2026-06-14 card rules (10th birthday validity, 特定在留カード). Rules as of 2026-11-08." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -822,6 +823,27 @@ export const TOOLS: ToolDef[] = [
       today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
     }),
     example: { jobEndDate: "2026-10-31", status: "work", reason: "self", insuredMonths: 18, today: "2026-11-07" },
+  },
+  {
+    name: "japan_visa_renewal_check",
+    title: "When can I renew my visa / residence card in Japan? Window, last day, special period, fee",
+    description:
+      "Applies ISA's renewal rules as of 2026-11-08 (在留期間更新許可申請 16-3, 特例期間, 在留カードの有効期間の更新申請, 特定在留カード Q&A, 2026-10-01 fee table). expiryDate required (period-of-stay expiry; for holder permanent / hsp2 the card's validity expiry). holder: fixed | permanent | hsp2. currentPeriodMonths (default 12; under 6 removes the 3-month rule), expectedGrantMonths (fee band), appliedDate (turns on the special period), birthDate (under-16 card rule, next card validity), cardIssueDate, method counter | online, wantSpecialCard, today. Returns verdict (too_early | open | urgent | pending | special_period | expired), summary, windowOpens, lastDay, daysLeft, specialPeriodEnd, fee {band, feeJPY, processingFeeJPY, totalJPY}, card16, nextCardValidity, processing, earlyExceptions, deadlines, actions, warnings, sources, disclaimer. Use for 'when can I renew my visa in Japan', '在留期間更新 いつから', '特例期間 いつまで', 'visa expired while renewal pending', '永住者 在留カード 更新 いつから', 'Japan visa renewal fee 2026'. Educational, not immigration or legal advice; not affiliated with ISA.",
+    site: "renewal",
+    path: "/api/check",
+    inputSchema: z.object({
+      expiryDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("Period-of-stay expiry (or card expiry for permanent / hsp2), YYYY-MM-DD."),
+      holder: z.enum(["fixed", "permanent", "hsp2"]).optional().describe("fixed (any status with a period of stay, default) | permanent | hsp2."),
+      currentPeriodMonths: z.number().min(1).max(120).optional().describe("Length of the current period of stay in months (default 12)."),
+      expectedGrantMonths: z.number().min(1).max(120).optional().describe("Period you expect ISA to grant, for the fee (default = current)."),
+      appliedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Date you already applied, YYYY-MM-DD."),
+      birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Date of birth, YYYY-MM-DD (optional)."),
+      cardIssueDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Residence card issue date, YYYY-MM-DD (optional)."),
+      method: z.enum(["counter", "online"]).optional().describe("counter (default) or online."),
+      wantSpecialCard: z.boolean().optional().describe("Wants the 特定在留カード (card + My Number)."),
+      today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
+    }),
+    example: { expiryDate: "2027-03-20", currentPeriodMonths: 12, today: "2026-11-08" },
   },
 ];
 

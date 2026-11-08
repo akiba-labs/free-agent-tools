@@ -219,11 +219,21 @@ test("japan_lost_item_check on the lost site", async () => {
   assert.equal(t.inputSchema.safeParse({ valueJPY: -1 }).success, false);
 });
 
-test("40 tools, v1.24.0, japan_job_loss_check on the jobloss site", async () => {
-  assert.equal(TOOLS.length, 40);
-  assert.equal(Object.keys(SITES).length >= 30, true);
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.24.0", f);
+test("japan_job_loss_check on the jobloss site", async () => {
   const t = TOOLS.find((x) => x.name === "japan_job_loss_check");
   assert.ok(t);
   assert.equal(SITES[t.site].url, "https://japan-job-loss.vercel.app");
+});
+
+test("41 tools, v1.25.0, japan_visa_renewal_check on the renewal site", async () => {
+  assert.equal(TOOLS.length, 41);
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.25.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_visa_renewal_check");
+  assert.ok(t);
+  assert.equal(SITES[t.site].url, "https://japan-visa-renewal.vercel.app");
+  assert.equal(t.path, "/api/check");
+  assert.equal(t.inputSchema.safeParse(t.example).success, true);
+  assert.equal(t.inputSchema.safeParse({ expiryDate: "2027-01-20", holder: "permanent", birthDate: "1985-06-02" }).success, true);
+  assert.equal(t.inputSchema.safeParse({}).success, false);
+  assert.equal(t.inputSchema.safeParse({ expiryDate: "2027-01-20", holder: "tourist" }).success, false);
 });
