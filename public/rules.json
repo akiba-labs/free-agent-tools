@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-08T12:43+09:00",
+ "generatedAt": "2026-11-09T12:46+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -9085,6 +9085,168 @@
    }
   },
   {
+   "id": "japan-jlpt-check",
+   "name": "Japan JLPT Level Check",
+   "site": "https://japan-jlpt-check.vercel.app",
+   "rulesEndpoint": "https://japan-jlpt-check.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-jlpt-check.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-09",
+   "effective": null,
+   "officialSources": [
+    "https://www.jlpt.jp/e/about/merit.html",
+    "https://www.jlpt.jp/about/cefr_reference.html",
+    "https://www.moj.go.jp/isa/applications/resources/newimmiact_3_evaluate_index.html",
+    "https://www.moj.go.jp/isa/applications/status/designatedactivities11.html",
+    "https://www.moj.go.jp/isa/applications/resources/10_00237.html",
+    "https://www.moj.go.jp/isa/policies/ssw/foodservice.html",
+    "https://www.moj.go.jp/isa/policies/ssw/fishery.html",
+    "https://www.moj.go.jp/isa/policies/ssw/nursingcare.html",
+    "https://www.moj.go.jp/isa/03_00195.html",
+    "https://www.moj.go.jp/isa/10_00279.html"
+   ],
+   "rules": {
+    "passMarks": {
+     "n1": 100,
+     "n2": 90,
+     "n3": 95,
+     "n4": 90,
+     "n5": 80
+    },
+    "cefrReference": {
+     "n1": {
+      "passMark": 100,
+      "cefr": [
+       {
+        "from": 100,
+        "level": "B2"
+       },
+       {
+        "from": 142,
+        "level": "C1"
+       }
+      ]
+     },
+     "n2": {
+      "passMark": 90,
+      "cefr": [
+       {
+        "from": 90,
+        "level": "B1"
+       },
+       {
+        "from": 112,
+        "level": "B2"
+       }
+      ]
+     },
+     "n3": {
+      "passMark": 95,
+      "cefr": [
+       {
+        "from": 95,
+        "level": "A2"
+       },
+       {
+        "from": 104,
+        "level": "B1"
+       }
+      ]
+     },
+     "n4": {
+      "passMark": 90,
+      "cefr": [
+       {
+        "from": 90,
+        "level": "A2"
+       }
+      ]
+     },
+     "n5": {
+      "passMark": 80,
+      "cefr": [
+       {
+        "from": 80,
+        "level": "A1"
+       }
+      ]
+     }
+    },
+    "cefrReferenceNote": "JLPT's official reference display (from the December 2025 exam): shown only for passes; covers language knowledge, reading and listening, not speaking or writing.",
+    "hspPoints": {
+     "n1_or_bjt480_or_japanese_major_abroad": 15,
+     "n2_or_bjt400": 10,
+     "n2NotWithJapaneseDegree": true
+    },
+    "designatedActivities46": "Japanese university/graduate-school degree (or listed equivalents) + JLPT N1 or BJT 480+ (Japanese major abroad also proves the language).",
+    "businessManager": {
+     "from": "2025-10-16",
+     "transitionalRenewalsUntil": "2028-10-16",
+     "b2Proofs": [
+      "JLPT N2+",
+      "BJT 400+",
+      "20+ years as a mid/long-term resident",
+      "Japanese higher-education graduate (専門学校 counts)",
+      "Japanese compulsory school + high school"
+     ],
+     "who": "applicant or any full-time employee (Japanese nationals count)"
+    },
+    "ssw1": {
+     "japanese": "JFT-Basic A2.2 or JLPT N4+",
+     "exemption": "TITP (ii) completed in good standing, any job type",
+     "care": "plus Care Japanese Language Evaluation Test (waived only by TITP (ii) in nursing care)"
+    },
+    "ssw2FoodFishery": {
+     "b1From": "2027-04-01",
+     "note": "Proof method to be announced by ISA."
+    },
+    "ikuseiShuro": {
+     "from": "2027-04-01",
+     "entry": "A1 test pass (e.g. JLPT N5) or A1 course before starting work",
+     "end": "A2-target course within 3 years",
+     "toSsw1": "A2 (JLPT N4 level)",
+     "transfer": "A2.1+ in most fields, A2.2 in nursing care"
+    },
+    "permanentResidence": {
+     "b1ConsideredFrom": "2027-04-01",
+     "notConsideredFor": [
+      "HSP holders and families",
+      "6+ years of Japanese primary/secondary schooling",
+      "some children of permanent residents born in Japan"
+     ],
+     "testNamed": false
+    },
+    "benchmarks": {
+     "japaneseLanguageSchool": "N5+",
+     "higherEducation": "N2+",
+     "engineerHumanitiesWhenJobUsesJapanese": "N2+",
+     "medicalNationalExams": "N1",
+     "assistantNurseExam": "N1",
+     "juniorHighEquivalencyJapaneseWaived": "N1 or N2",
+     "epa": {
+      "philippines": "about N5+",
+      "indonesia": "about N4+",
+      "vietnam": "N3+"
+     }
+    },
+    "rulesAsOf": "2026-11-09",
+    "sources": [
+     "https://www.jlpt.jp/e/about/merit.html",
+     "https://www.jlpt.jp/about/cefr_reference.html",
+     "https://www.moj.go.jp/isa/applications/resources/newimmiact_3_evaluate_index.html",
+     "https://www.moj.go.jp/isa/applications/status/designatedactivities11.html",
+     "https://www.moj.go.jp/isa/applications/resources/10_00237.html",
+     "https://www.moj.go.jp/isa/policies/ssw/foodservice.html",
+     "https://www.moj.go.jp/isa/policies/ssw/fishery.html",
+     "https://www.moj.go.jp/isa/policies/ssw/nursingcare.html",
+     "https://www.moj.go.jp/isa/03_00195.html",
+     "https://www.moj.go.jp/isa/10_00279.html"
+    ],
+    "disclaimer": "Educational checker, not immigration, legal or career advice. Not affiliated with the Immigration Services Agency of Japan (ISA), the Ministry of Justice, the Japan Foundation, JEES or any ministry. It compares the level, score and facts you enter with published Japanese-language rules as of the date shown; it cannot see your certificate or decide any application. Requirements change and some are only 'considered' rather than required. ISA (or the ministry running the exam) decides; confirm with ISA's information centre (0570-013904), your school or employer, or a licensed gyoseishoshi / lawyer.",
+    "docs": "https://japan-jlpt-check.vercel.app/openapi.json",
+    "checker": "https://japan-jlpt-check.vercel.app/api/check"
+   }
+  },
+  {
    "id": "japan-leaving-tax",
    "name": "Japan Leaving Tax Check",
    "site": "https://japan-leaving-tax.vercel.app",
@@ -16233,7 +16395,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-11-08",
+    "today": "2026-11-09",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

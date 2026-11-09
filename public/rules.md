@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-08T12:43+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-09T12:46+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -14,6 +14,7 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 | [Japan Dual Pricing Check](https://japan-dual-pricing.vercel.app) | – | – | [japan-dual-pricing/api/rules](https://japan-dual-pricing.vercel.app/api/rules) | 23 |
 | [Japan HSP Points Calculator](https://japan-hsp-points.vercel.app) | 2026-10-30 | – | [japan-hsp-points/api/rules](https://japan-hsp-points.vercel.app/api/rules) | 7 |
 | [Japan International Postage 2027](https://japan-intl-postage.vercel.app) | 2026-10-19 | – | [japan-intl-postage/api/rules](https://japan-intl-postage.vercel.app/api/rules) | 7 |
+| [Japan JLPT Level Check](https://japan-jlpt-check.vercel.app) | 2026-11-09 | – | [japan-jlpt-check/api/rules](https://japan-jlpt-check.vercel.app/api/rules) | 10 |
 | [Japan Leaving Tax Check](https://japan-leaving-tax.vercel.app) | 2026-11-01 | – | [japan-leaving-tax/api/rules](https://japan-leaving-tax.vercel.app/api/rules) | 0 |
 | [Japan Lost Item Check](https://japan-lost-item.vercel.app) | 2026-11-03 | – | [japan-lost-item/api/rules](https://japan-lost-item.vercel.app/api/rules) | 12 |
 | [Japan Luggage Check](https://japan-luggage.vercel.app) | 2026-10-12 | – | [japan-luggage/api/rules](https://japan-luggage.vercel.app/api/rules) | 8 |
@@ -151,6 +152,18 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 - https://www.post.japanpost.jp/send/oversea/charge/list-ems/all.html
 - https://www.post.japanpost.jp/send/oversea/charge/list-parcel/zone4.html
 - https://www.post.japanpost.jp/send/oversea/charge/list-normal/zone4.html
+
+### Japan JLPT Level Check
+- https://www.jlpt.jp/e/about/merit.html
+- https://www.jlpt.jp/about/cefr_reference.html
+- https://www.moj.go.jp/isa/applications/resources/newimmiact_3_evaluate_index.html
+- https://www.moj.go.jp/isa/applications/status/designatedactivities11.html
+- https://www.moj.go.jp/isa/applications/resources/10_00237.html
+- https://www.moj.go.jp/isa/policies/ssw/foodservice.html
+- https://www.moj.go.jp/isa/policies/ssw/fishery.html
+- https://www.moj.go.jp/isa/policies/ssw/nursingcare.html
+- https://www.moj.go.jp/isa/03_00195.html
+- https://www.moj.go.jp/isa/10_00279.html
 
 ### Japan Leaving Tax Check
 

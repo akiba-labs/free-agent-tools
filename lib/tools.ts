@@ -39,6 +39,7 @@ export const SITES: Record<string, SiteInfo> = {
   medical: { id: "medical", name: "Japan High-Cost Medical Expense Check", url: "https://japan-medical-cost-cap.vercel.app", blurb: "Japan 高額療養費 (high-cost medical expense benefit): the monthly cap (自己負担限度額) for your age and income band, what you really pay, the refund, the 4th-month 多数回 rate, the new Aug–Jul yearly cap (年間上限) for treatment from Aug 2026, the same bill under the Aug 2027 12-band schedule and the 2-year claim deadline. Rules as of 2026-11-04 (MHLW review tables, 協会けんぽ, city NHI pages)." },
   jobloss: { id: "jobloss", name: "Japan Job Loss Check", url: "https://japan-job-loss.vercel.app", blurb: "Quit or lost a job in Japan: ISA 所属機関に関する届出 within 14 days, the ~3-month inactivity review risk, Hello Work / 雇用保険 eligibility and waiting rules (self-quit restriction 1 month from 2025-04-01), health insurance (任意継続 vs 国保), National Pension switch and documents. Rules as of 2026-11-07." },
   renewal: { id: "renewal", name: "Japan Visa Renewal Window Check", url: "https://japan-visa-renewal.vercel.app", blurb: "When to renew a visa (period of stay) or residence card in Japan: the window opens 3 months before expiry for periods of 6 months+, last day = expiry, the 2-month special period (特例期間) while ISA decides, the 2026-10-01 fee for the period granted, and permanent-resident / HSP (ii) card renewal under the 2026-06-14 card rules (10th birthday validity, 特定在留カード). Rules as of 2026-11-08." },
+  jlpt: { id: "jlpt", name: "Japan JLPT Level Check", url: "https://japan-jlpt-check.vercel.app", blurb: "Which JLPT level do you need in Japan: which visa / status Japanese rules N1–N5 (plus BJT score or Japanese schooling) meets — HSP points (N1 15, N2 10), the Business Manager B2 rule since 2025-10-16, Designated Activities 46, Specified Skilled Worker N4, 育成就労 A1 and the permanent-residence B1 factor from 2027-04-01 — with JLPT's official CEFR reference. Rules as of 2026-11-09." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
 
@@ -844,6 +845,33 @@ export const TOOLS: ToolDef[] = [
       today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
     }),
     example: { expiryDate: "2027-03-20", currentPeriodMonths: 12, today: "2026-11-08" },
+  },
+  {
+    name: "japan_jlpt_level_check",
+    title: "Which JLPT level do I need in Japan? Visa / status Japanese rules a level meets",
+    description:
+      "Compares a JLPT level (N1–N5, optional total score 0–180) plus optional BJT score and Japanese schooling with Japan's published Japanese-language rules as of 2026-11-09 (JLPT Advantages page + official CEFR reference, ISA HSP points table, 特定活動46号, 経営・管理 2025-10-16 revision, 特定技能 field pages, 育成就労 Japanese page, 永住許可ガイドライン 2026-10-01). level: n1 | n2 | n3 | n4 | n5 | none. Optional: score, bjtScore, japaneseDegree, japaneseHigherEd (専門学校 etc.), japaneseMajorAbroad, japaneseHighSchool, japaneseSchooling6y, yearsInJapan, jftBasic, titp2, titp2Care, careJapaneseTest, hsp, applyDate (rules starting 2027-04-01), today. Returns verdict (b2_plus | b1 | a2 | a1 | none), summary, cefr {level, atLeast, note}, hspPoints, metCount, items[] {id, name, nameJa, kind, status (met | not_met | exempt | points | no_points | considered_met | considered_unclear | considered_not_met | not_considered | not_in_force_yet | not_required | check_rules), rule, you, source}, nextLevelUnlocks, warnings, sources, disclaimer. Use for 'which JLPT level do I need for a Japan visa', 'does Business Manager need N2', 'JLPT N3 permanent residence 2027', 'JLPT CEFR level', 'HSP points JLPT', '日本語能力試験 何級 在留資格', '特定技能 N4'. Educational, not immigration advice; not affiliated with ISA or the JLPT organisers.",
+    site: "jlpt",
+    path: "/api/check",
+    inputSchema: z.object({
+      level: z.enum(["n1", "n2", "n3", "n4", "n5", "none"]).optional().describe("Highest JLPT level passed (default none)."),
+      score: z.number().min(0).max(180).optional().describe("JLPT total score (総合得点) on that level, for the CEFR reference."),
+      bjtScore: z.number().min(0).max(800).optional().describe("BJT Business Japanese score."),
+      japaneseDegree: z.boolean().optional().describe("Degree from a Japanese university / graduate school."),
+      japaneseHigherEd: z.boolean().optional().describe("Graduated from a Japanese 専門学校, 高専 or junior college."),
+      japaneseMajorAbroad: z.boolean().optional().describe("Majored in Japanese at a foreign university."),
+      japaneseHighSchool: z.boolean().optional().describe("Japanese compulsory education + Japanese high school."),
+      japaneseSchooling6y: z.boolean().optional().describe("6+ years of primary/secondary school in Japan."),
+      yearsInJapan: z.number().min(0).max(120).optional().describe("Years living in Japan as a mid/long-term resident."),
+      jftBasic: z.boolean().optional().describe("Passed JFT-Basic (A2)."),
+      titp2: z.boolean().optional().describe("Completed Technical Intern Training (ii) in good standing."),
+      titp2Care: z.boolean().optional().describe("That TITP (ii) was in nursing care."),
+      careJapaneseTest: z.boolean().optional().describe("Passed the Care Japanese Language Evaluation Test."),
+      hsp: z.boolean().optional().describe("HSP holder or HSP family member."),
+      applyDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Planned application date, YYYY-MM-DD (default today)."),
+      today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
+    }),
+    example: { level: "n2", score: 115, today: "2026-11-09" },
   },
 ];
 
