@@ -1,6 +1,6 @@
 {
   "name": "free-agent-tools",
-  "version": "1.26.0",
+  "version": "1.27.0",
   "private": true,
   "description": "Remote MCP server (streamable HTTP, no auth) with free deterministic tools: startup pitch roast, business idea scoring, pricing, hotel OTA commission, SaaS self-host savings, ads notice risk, App Store 4.2 precheck, faceless YouTube reality check, AI bottlenecks, viral attention patterns, Japan trip planning, Japan tax-free refund check, Japan visa fee, Japan luggage check, Kyushu travel discount, Japan customs allowance, Japan TB screening (JPETS), Japan dual pricing (resident vs non-resident prices), a Japan emergency alert decoder (EEW, tsunami, level-named warnings, evacuation, J-ALERT), a Japan permanent residence guideline check (2026-10-01 revision), a Japan international postage calculator (Japan Post prices now vs from 2027-02-01), a Japan re-entry deadline check (deemed re-entry, re-entry permit, pending-renewal special period), a Japan driving check (IDP / translation / 外免切替), a Japan job-loss checklist (ISA notice, Hello Work, health/pension), a Japan visa renewal window check (3-month window, special period, fees, PR card renewal), a Japan JLPT level check (which visa / status Japanese rules N1–N5 meets, official CEFR reference), and an Airbnb house rules check (policy for bookings from 2026-11-20, Japan 民泊 guest-register exceptions).",
   "license": "MIT",

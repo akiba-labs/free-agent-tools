@@ -1,6 +1,6 @@
 # Japan rules index
 
-Generated 2026-11-09T12:46+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
+Generated 2026-11-10T12:40+09:00 from each tool's live `/api/rules`. Machine-readable: [/rules.json](https://free-agent-tools.vercel.app/rules.json).
 
 Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.
 
@@ -12,6 +12,7 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 | [Japan Disaster Prep Check](https://japan-disaster-prep.vercel.app) | 2026-11-02 | – | [japan-disaster-prep/api/rules](https://japan-disaster-prep.vercel.app/api/rules) | 10 |
 | [Japan Driving Check](https://japan-driving-check.vercel.app) | 2026-10-27 | – | [japan-driving-check/api/rules](https://japan-driving-check.vercel.app/api/rules) | 7 |
 | [Japan Dual Pricing Check](https://japan-dual-pricing.vercel.app) | – | – | [japan-dual-pricing/api/rules](https://japan-dual-pricing.vercel.app/api/rules) | 23 |
+| [Japan Graduate Visa Check](https://japan-graduate-visa.vercel.app) | 2026-11-10 | – | [japan-graduate-visa/api/rules](https://japan-graduate-visa.vercel.app/api/rules) | 9 |
 | [Japan HSP Points Calculator](https://japan-hsp-points.vercel.app) | 2026-10-30 | – | [japan-hsp-points/api/rules](https://japan-hsp-points.vercel.app/api/rules) | 7 |
 | [Japan International Postage 2027](https://japan-intl-postage.vercel.app) | 2026-10-19 | – | [japan-intl-postage/api/rules](https://japan-intl-postage.vercel.app/api/rules) | 7 |
 | [Japan JLPT Level Check](https://japan-jlpt-check.vercel.app) | 2026-11-09 | – | [japan-jlpt-check/api/rules](https://japan-jlpt-check.vercel.app/api/rules) | 10 |
@@ -134,6 +135,17 @@ Educational summaries, not legal, tax or immigration advice. Rules change; confi
 - https://www.osakacastle.net/guide/
 - https://www.pref.osaka.lg.jp/documents/108411/dainijitousin.pdf
 - https://www.mlit.go.jp/kankocho/page08_00012.html
+
+### Japan Graduate Visa Check
+- https://www.moj.go.jp/isa/10_00240.html
+- https://www.moj.go.jp/isa/content/001353746.pdf
+- https://www.moj.go.jp/isa/applications/procedures/16-2.html
+- https://www.moj.go.jp/isa/applications/resources/nyukan_nyukan84.html
+- https://www.moj.go.jp/isa/applications/resources/nyuukokukanri07_00013.html
+- https://www.moj.go.jp/isa/applications/status/designatedactivities15.html
+- https://www.moj.go.jp/isa/applications/status/designatedactivities11.html
+- https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00003.html
+- https://www.meiji.ac.jp/cip/student_support/entry_clearance/activities.html
 
 ### Japan HSP Points Calculator
 - https://laws.e-gov.go.jp/law/426M60000010037

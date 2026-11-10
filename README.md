@@ -136,6 +136,7 @@ Every tool is also a free JSON API (GET or POST, CORS open, OpenAPI 3.1, `/.well
 - [Japan Job Loss Check](https://japan-job-loss.vercel.app)
 - [Japan Visa Renewal Window Check](https://japan-visa-renewal.vercel.app)
 - [Japan JLPT Level Check](https://japan-jlpt-check.vercel.app)
+- [Japan Graduate Visa Check](https://japan-graduate-visa.vercel.app)
 
 ## Japan rules index (machine-readable)
 

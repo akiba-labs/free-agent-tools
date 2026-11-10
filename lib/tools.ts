@@ -39,6 +39,7 @@ export const SITES: Record<string, SiteInfo> = {
   medical: { id: "medical", name: "Japan High-Cost Medical Expense Check", url: "https://japan-medical-cost-cap.vercel.app", blurb: "Japan 高額療養費 (high-cost medical expense benefit): the monthly cap (自己負担限度額) for your age and income band, what you really pay, the refund, the 4th-month 多数回 rate, the new Aug–Jul yearly cap (年間上限) for treatment from Aug 2026, the same bill under the Aug 2027 12-band schedule and the 2-year claim deadline. Rules as of 2026-11-04 (MHLW review tables, 協会けんぽ, city NHI pages)." },
   jobloss: { id: "jobloss", name: "Japan Job Loss Check", url: "https://japan-job-loss.vercel.app", blurb: "Quit or lost a job in Japan: ISA 所属機関に関する届出 within 14 days, the ~3-month inactivity review risk, Hello Work / 雇用保険 eligibility and waiting rules (self-quit restriction 1 month from 2025-04-01), health insurance (任意継続 vs 国保), National Pension switch and documents. Rules as of 2026-11-07." },
   renewal: { id: "renewal", name: "Japan Visa Renewal Window Check", url: "https://japan-visa-renewal.vercel.app", blurb: "When to renew a visa (period of stay) or residence card in Japan: the window opens 3 months before expiry for periods of 6 months+, last day = expiry, the 2-month special period (特例期間) while ISA decides, the 2026-10-01 fee for the period granted, and permanent-resident / HSP (ii) card renewal under the 2026-06-14 card rules (10th birthday validity, 特定在留カード). Rules as of 2026-11-08." },
+  graduate: { id: "graduate", name: "Japan Graduate Visa Check", url: "https://japan-graduate-visa.vercel.app", blurb: "International students graduating in Japan: when to change from 留学 to a work status (ISA asks for 1 Dec–31 Jan for April starts; file with a certificate of expected graduation), the job-hunting 特定活動 (6 months + 1 renewal), the 内定者 特定活動 for later starts, part-time work ending at graduation and the 14-day school-leaving notice. Rules as of 2026-11-10." },
   jlpt: { id: "jlpt", name: "Japan JLPT Level Check", url: "https://japan-jlpt-check.vercel.app", blurb: "Which JLPT level do you need in Japan: which visa / status Japanese rules N1–N5 (plus BJT score or Japanese schooling) meets — HSP points (N1 15, N2 10), the Business Manager B2 rule since 2025-10-16, Designated Activities 46, Specified Skilled Worker N4, 育成就労 A1 and the permanent-residence B1 factor from 2027-04-01 — with JLPT's official CEFR reference. Rules as of 2026-11-09." },
   customs: { id: "customs", name: "Japan Customs Allowance Checker", url: "https://japan-customs-allowance.vercel.app", blurb: "Japan duty-free allowance on arrival: alcohol, tobacco, perfume, ¥200,000 goods, simplified duty in yen, cash over ¥1M declaration." },
 };
@@ -872,6 +873,28 @@ export const TOOLS: ToolDef[] = [
       today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
     }),
     example: { level: "n2", score: 115, today: "2026-11-09" },
+  },
+  {
+    name: "japan_graduate_visa_check",
+    title: "Graduating in Japan: when to change from student visa, job-hunting visa, part-time end, 14-day notice",
+    description:
+      "Dated checklist for an international student graduating in Japan, from ISA guidance as of 2026-11-10 (留学→就労資格 notice 10_00240, 在留資格変更許可申請 16-2, 継続就職活動 and 内定者 特定活動 pages, 2026-10-01 fee table, school guidance on part-time after graduation). plan: job_offer (needs jobStartDate; April starts → ISA asks for filing 1 Dec–31 Jan, otherwise aim 2 months before start; file with 卒業見込み証明書, collect card after graduation; 内定者 特定活動 for long gaps: hire within 1 year of offer and 1 year 6 months of graduation) | job_hunting (継続就職活動 特定活動, 6 months + 1 renewal, university / 専門士 grads with recommendation; language-school grads only with foreignBachelor) | leaving | further_study. Always: part-time on 留学 permission ends at graduation; report leaving the school within 14 days. Returns verdict (too_early | open | urgent | applied | not_eligible | expired | info), summary, targetStatus, windowOpens, recommendedBy, lastDay, partTimeEnds, notifySchoolLeftBy, jobHuntingUntil, hireBy, fee, deadlines, actions, warnings, sources, disclaimer. Use for 'when to change student visa to work visa Japan', 'April start visa application December', 'can I work part-time after graduation in Japan', 'job hunting visa after graduation Japan', '留学 就労ビザ 変更 いつから', '継続就職活動 特定活動'. Educational, not immigration advice; not affiliated with ISA or any school.",
+    site: "graduate",
+    path: "/api/check",
+    inputSchema: z.object({
+      graduationDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).describe("(Expected) graduation day, YYYY-MM-DD."),
+      plan: z.enum(["job_offer", "job_hunting", "leaving", "further_study"]).optional().describe("What happens after graduation (default job_offer if jobStartDate is given, else job_hunting)."),
+      jobStartDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Job start date, YYYY-MM-DD (required for job_offer)."),
+      studentExpiry: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("留学 period-of-stay expiry on the residence card, YYYY-MM-DD."),
+      school: z.enum(["university", "vocational", "language_school", "other"]).optional().describe("university (incl. graduate school, junior college) | vocational (専門学校 / 専門士) | language_school | other. Default university."),
+      foreignBachelor: z.boolean().optional().describe("Language-school students: holds a foreign bachelor's degree."),
+      offerDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Job offer (内定) date, YYYY-MM-DD."),
+      appliedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Date already filed, YYYY-MM-DD."),
+      expectedGrantMonths: z.number().min(1).max(120).optional().describe("Period expected to be granted, for the fee (default 12; job hunting 6)."),
+      method: z.enum(["counter", "online"]).optional().describe("counter (default) or online."),
+      today: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("As-of date, YYYY-MM-DD (default today JST)."),
+    }),
+    example: { graduationDate: "2027-03-20", jobStartDate: "2027-04-01", studentExpiry: "2027-07-15", plan: "job_offer", today: "2026-11-10" },
   },
 ];
 

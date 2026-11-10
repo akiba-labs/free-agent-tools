@@ -1,7 +1,7 @@
 {
  "name": "Japan rules index (Free Agent Tools)",
  "version": 1,
- "generatedAt": "2026-11-09T12:46+09:00",
+ "generatedAt": "2026-11-10T12:40+09:00",
  "description": "Thresholds, fees, dates and official sources behind each free Japan rule-check tool, copied from each tool's own /api/rules. Each tool's rulesEndpoint is the live source of truth.",
  "license": "MIT (data facts from official Japanese government and company sources linked per tool)",
  "disclaimer": "Educational summaries, not legal, tax or immigration advice. Rules change; confirm with the official source linked for each rule before relying on it.",
@@ -5224,6 +5224,104 @@
     "disclaimer": "Educational guide, not legal, travel or financial advice. Prices are adult prices copied from official facility/municipal pages and the Japan Tourism Agency's case list as of 2026-10-16; facilities change prices, planned schemes can change or be dropped, and the ticket counter decides who qualifies for a resident price. Check the official source before you go. Not affiliated with any facility or government body.",
     "docs": "https://japan-dual-pricing.vercel.app/openapi.json",
     "checker": "https://japan-dual-pricing.vercel.app/api/check"
+   }
+  },
+  {
+   "id": "japan-graduate-visa",
+   "name": "Japan Graduate Visa Check",
+   "site": "https://japan-graduate-visa.vercel.app",
+   "rulesEndpoint": "https://japan-graduate-visa.vercel.app/api/rules",
+   "checkEndpoint": "https://japan-graduate-visa.vercel.app/openapi.json",
+   "rulesAsOf": "2026-11-10",
+   "effective": null,
+   "officialSources": [
+    "https://www.moj.go.jp/isa/10_00240.html",
+    "https://www.moj.go.jp/isa/content/001353746.pdf",
+    "https://www.moj.go.jp/isa/applications/procedures/16-2.html",
+    "https://www.moj.go.jp/isa/applications/resources/nyukan_nyukan84.html",
+    "https://www.moj.go.jp/isa/applications/resources/nyuukokukanri07_00013.html",
+    "https://www.moj.go.jp/isa/applications/status/designatedactivities15.html",
+    "https://www.moj.go.jp/isa/applications/status/designatedactivities11.html",
+    "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00003.html",
+    "https://www.meiji.ac.jp/cip/student_support/entry_clearance/activities.html"
+   ],
+   "rules": {
+    "aprilStart": "For work starting in April, ISA asks students to apply to change from 留学 to a work status between 1 December and the end of January (10_00240). It is a request, not a legal deadline: later applications are still accepted but may not be decided by April.",
+    "changeOfStatus": "Change of status (在留資格変更許可申請, ISA 16-2): file from when the reason arises up to your current expiry date. Standard processing 1–2 months. You can file with a certificate of expected graduation (卒業見込み証明書); the new card is collected after graduation with the graduation certificate. You cannot start the job until the new status is granted.",
+    "studentExpiryBeforeFeb": "If your 留学 period ends on or before 31 January and you are still studying after that, extend 留学 first instead of filing the work-status change in the Dec–Jan window (10_00240).",
+    "docOmission": "Since 2025-12-01, changes from 留学 to 技術・人文知識・国際業務 or 研究 may omit documents (same as category 2) for Japanese university / graduate school / junior college graduates, graduates of foreign universities ranked in the top 300 of two of QS / THE / ARWU, or employers already employing a former student who changed from 留学 and renewed once. Not for dispatch employment. Attach the explanation form.",
+    "jobHunting": "継続就職活動 特定活動: university (incl. graduate school, junior college), 専修学校専攻科 or 専門士 vocational graduates with a school recommendation can change to 特定活動 for 6 months, renewable once (about 1 year after graduation). A 2nd year is possible only through an eligible local-government job programme. Foreign-bachelor graduates of certain certified Japanese language schools have a similar route.",
+    "jobOfferWait": "内定者 特定活動: graduates of a Japanese university or vocational school with an offer can stay until hiring if hired within 1 year of the offer AND within 1 year 6 months of graduation, the job is expected to qualify for a work status, and the employer signs a pledge.",
+    "partTime": "Part-time work on a 留学 資格外活動 permission ends at graduation, even if your 留学 period has time left (school guidance based on ISA rules). On 継続就職活動 or 内定者 特定活動 you can get a new 資格外活動 permission for up to 28 hours a week.",
+    "notification": "Report leaving your school (所属機関に関する届出) to ISA within 14 days of graduation (Immigration Control Act art. 19-16), online or at a bureau.",
+    "stayingOn": "留学 covers study. Staying long after graduation on 留学 is not allowed; schools advise about 1 month to prepare departure, and ISA may cancel a status whose activity has stopped.",
+    "fees": "Change-of-status fee depends on the period granted (from 2026-10-01): counter ¥10,000 (≤3 months) to ¥75,000 (5 years+), ¥33,000 for 1 year; online ¥10,000–¥65,000 plus ¥330/¥550.",
+    "feeBands": [
+     {
+      "label": "3 months or less",
+      "maxMonths": 3,
+      "counterJPY": 10000,
+      "onlineJPY": 10000,
+      "onlineProcessingJPY": 330
+     },
+     {
+      "label": "Over 3 up to 6 months",
+      "maxMonths": 6,
+      "counterJPY": 18000,
+      "onlineJPY": 15000,
+      "onlineProcessingJPY": 330
+     },
+     {
+      "label": "Over 6 months, under 1 year",
+      "maxMonths": 11.99,
+      "counterJPY": 25000,
+      "onlineJPY": 21000,
+      "onlineProcessingJPY": 330
+     },
+     {
+      "label": "1 year",
+      "maxMonths": 12,
+      "counterJPY": 33000,
+      "onlineJPY": 27000,
+      "onlineProcessingJPY": 330
+     },
+     {
+      "label": "Over 1 year, under 3 years",
+      "maxMonths": 35.99,
+      "counterJPY": 48000,
+      "onlineJPY": 42000,
+      "onlineProcessingJPY": 330
+     },
+     {
+      "label": "3 years or more, under 5 years",
+      "maxMonths": 59.99,
+      "counterJPY": 64000,
+      "onlineJPY": 56000,
+      "onlineProcessingJPY": 550
+     },
+     {
+      "label": "5 years or more",
+      "maxMonths": null,
+      "counterJPY": 75000,
+      "onlineJPY": 65000,
+      "onlineProcessingJPY": 550
+     }
+    ],
+    "rulesAsOf": "2026-11-10",
+    "sources": [
+     "https://www.moj.go.jp/isa/10_00240.html",
+     "https://www.moj.go.jp/isa/content/001353746.pdf",
+     "https://www.moj.go.jp/isa/applications/procedures/16-2.html",
+     "https://www.moj.go.jp/isa/applications/resources/nyukan_nyukan84.html",
+     "https://www.moj.go.jp/isa/applications/resources/nyuukokukanri07_00013.html",
+     "https://www.moj.go.jp/isa/applications/status/designatedactivities15.html",
+     "https://www.moj.go.jp/isa/applications/status/designatedactivities11.html",
+     "https://www.moj.go.jp/isa/applications/procedures/nyuukokukanri07_00003.html",
+     "https://www.meiji.ac.jp/cip/student_support/entry_clearance/activities.html"
+    ],
+    "disclaimer": "Educational date checklist, not immigration or legal advice. Not affiliated with the Immigration Services Agency of Japan (ISA), the Ministry of Justice or any school. It applies ISA's published guidance (as of the date shown) to the dates you enter; it cannot see your residence card, your school's records or any decision. ISA decides, and regional bureaus may announce their own timing; confirm with your school's international office, your regional immigration bureau, ISA's information centre (0570-013904) or a licensed gyoseishoshi / lawyer.",
+    "docs": "https://japan-graduate-visa.vercel.app/openapi.json",
+    "checker": "https://japan-graduate-visa.vercel.app/api/check"
    }
   },
   {
@@ -16395,7 +16493,7 @@
      "https://fukko-ouenwari.pref.kagoshima.jp/"
     ],
     "disclaimer": "Educational estimate, not an official calculator. Not affiliated with the Japan Tourism Agency, any prefecture, travel agency or booking site. Budgets can run out without notice and each seller applies its own rounding and plan rules; the discounted price shown at checkout is final.",
-    "today": "2026-11-09",
+    "today": "2026-11-10",
     "upcomingSalesOpenings": [],
     "docs": "https://kyushu-travel-discount.vercel.app/openapi.json",
     "calculator": "https://kyushu-travel-discount.vercel.app/api/discount"

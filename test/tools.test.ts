@@ -236,9 +236,7 @@ test("japan_visa_renewal_check on the renewal site", async () => {
   assert.equal(t.inputSchema.safeParse({ expiryDate: "2027-01-20", holder: "tourist" }).success, false);
 });
 
-test("42 tools, v1.26.0, japan_jlpt_level_check on the jlpt site", async () => {
-  assert.equal(TOOLS.length, 42);
-  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.26.0", f);
+test("japan_jlpt_level_check on the jlpt site", async () => {
   const t = TOOLS.find((x) => x.name === "japan_jlpt_level_check");
   assert.ok(t);
   assert.equal(SITES[t.site].url, "https://japan-jlpt-check.vercel.app");
@@ -247,4 +245,17 @@ test("42 tools, v1.26.0, japan_jlpt_level_check on the jlpt site", async () => {
   assert.equal(t.inputSchema.safeParse({}).success, true);
   assert.equal(t.inputSchema.safeParse({ level: "n6" }).success, false);
   assert.equal(t.inputSchema.safeParse({ level: "n2", score: 200 }).success, false);
+});
+
+test("43 tools, v1.27.0, japan_graduate_visa_check on the graduate site", async () => {
+  assert.equal(TOOLS.length, 43);
+  for (const f of ["package.json", "server.json", "public/server.json"]) assert.equal(JSON.parse(readFileSync(f, "utf8")).version, "1.27.0", f);
+  const t = TOOLS.find((x) => x.name === "japan_graduate_visa_check");
+  assert.ok(t);
+  assert.equal(SITES[t.site].url, "https://japan-graduate-visa.vercel.app");
+  assert.equal(t.path, "/api/check");
+  assert.equal(t.inputSchema.safeParse(t.example).success, true);
+  assert.equal(t.inputSchema.safeParse({ graduationDate: "2027-03-20", plan: "job_hunting", school: "vocational" }).success, true);
+  assert.equal(t.inputSchema.safeParse({}).success, false);
+  assert.equal(t.inputSchema.safeParse({ graduationDate: "2027-03-20", plan: "tourism" }).success, false);
 });
