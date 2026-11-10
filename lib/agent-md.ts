@@ -9,7 +9,7 @@ A free remote MCP server (streamable HTTP, no auth, no signup) with ${TOOLS.leng
 - MCP endpoint: ${MCP_URL}
 - Agent guide: ${SERVER_URL}/llms.txt
 - Japan rules index: ${SERVER_URL}/rules.json (human-readable: ${SERVER_URL}/rules.md)
-- Source: https://github.com/sean0007/free-agent-tools
+- Source: https://github.com/akiba-labs/free-agent-tools
 
 ## When to use this
 ${WHEN_TO_USE}

@@ -1,6 +1,6 @@
 # Free Agent Tools: free remote MCP server
 
-<!-- mcp-name: io.github.sean0007/free-agent-tools -->
+<!-- mcp-name: io.github.akiba-labs/free-agent-tools -->
 
 A free, no-auth **remote MCP server** (streamable HTTP) with 39 small, deterministic tools your AI agent can call:
 startup pitch roasting, business idea scoring, price headroom, hotel OTA commission, open-source swaps for SaaS bills,

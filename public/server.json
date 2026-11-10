@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.sean0007/free-agent-tools",
+  "name": "io.github.akiba-labs/free-agent-tools",
   "title": "Free Agent Tools",
   "description": "30 free no-auth tools: pitch roast, Japan part-time work check, overseas dependents, re-entry deadline.",
   "version": "1.27.0",
   "websiteUrl": "https://free-agent-tools.vercel.app",
   "repository": {
-    "url": "https://github.com/sean0007/free-agent-tools",
+    "url": "https://github.com/akiba-labs/free-agent-tools",
     "source": "github"
   },
   "remotes": [

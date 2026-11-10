@@ -29,7 +29,7 @@ export default async function Yes({ params }: { params: Promise<{ pick: string }
       </p>
       <p>
         <a href="/pro">Back to Pro options</a> · <Link href="/" prefetch={false}>Free Agent Tools</Link> ·{" "}
-        <a href="https://github.com/sean0007/free-agent-tools">Watch the repo for news</a>
+        <a href="https://github.com/akiba-labs/free-agent-tools">Watch the repo for news</a>
       </p>
     </main>
   );

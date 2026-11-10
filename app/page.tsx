@@ -42,7 +42,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is it open source, and where is it listed?",
-    a: `Yes, MIT-licensed at github.com/sean0007/free-agent-tools. It is published in the Official MCP Registry as io.github.sean0007/free-agent-tools, and server.json and llms.txt are at ${SERVER_URL}/server.json and ${SERVER_URL}/llms.txt.`,
+    a: `Yes, MIT-licensed at github.com/akiba-labs/free-agent-tools. It is published in the Official MCP Registry as io.github.akiba-labs/free-agent-tools, and server.json and llms.txt are at ${SERVER_URL}/server.json and ${SERVER_URL}/llms.txt.`,
   },
 ];
 
@@ -57,7 +57,7 @@ const JSON_LD = [
     isAccessibleForFree: true,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     license: "https://opensource.org/licenses/MIT",
-    codeRepository: "https://github.com/sean0007/free-agent-tools",
+    codeRepository: "https://github.com/akiba-labs/free-agent-tools",
     description: `A free, no-auth remote MCP server (${MCP_URL}) with ${TOOLS.length} deterministic tools for founders, small businesses, creators, developers, and travelers.`,
     featureList: TOOLS.map((t) => t.title),
   },
@@ -147,7 +147,7 @@ export default function Home() {
       <pre>{`npx @modelcontextprotocol/inspector --cli ${MCP_URL} --transport http --method tools/list`}</pre>
 
       <footer>
-        Source: <a href="https://github.com/sean0007/free-agent-tools">github.com/sean0007/free-agent-tools</a> (MIT) ·{" "}
+        Source: <a href="https://github.com/akiba-labs/free-agent-tools">github.com/akiba-labs/free-agent-tools</a> (MIT) ·{" "}
         <a href="/llms.txt">llms.txt</a> · <a href="/server.json">server.json</a> · <a href="/pro">Pro (planned)</a>
         <br />
         Not affiliated with Anthropic, OpenAI, Google, Meta, Apple, or any company named in tool results.
